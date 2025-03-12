@@ -35,7 +35,7 @@ const Footer = () => {
           </Nav>
         </Col>
       </Row>
-
+      <h1>ciao ciaoS</h1>
       {/* Row per il copyright */}
       <Row className="mt-3 mb-3">
         <Col className="text-center text-dark">
