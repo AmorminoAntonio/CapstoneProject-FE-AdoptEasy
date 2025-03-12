@@ -1,4 +1,4 @@
-import { Image } from "react-bootstrap";
+import { Col, Image, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -10,12 +10,15 @@ import { Link } from "react-router-dom";
 const MyNav = () => {
   return (
     <Navbar sticky="top" expand="lg" className="bg-warning">
-      <Container fluid className="mx-5 my-2">
-        <Navbar.Brand href="#">
-          <span className="fw-bold">ADOPT EASY</span>
+      <Container fluid className="mx-5 my-2 py-2">
+        <Navbar.Brand as={Link} to="/">
+          <span className="me-1">
+            ADOPT <br /> EASY
+          </span>
+          <Image src="https://cdn-icons-png.flaticon.com/128/1076/1076928.png" width={50} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+        <Navbar.Collapse id="navbarScroll" className="d-flex align-items-center">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
             <Nav.Link as={Link} to="/">
               Home
@@ -24,18 +27,21 @@ const MyNav = () => {
               Posts
             </Nav.Link>
             <NavDropdown title="more info" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">su di noi</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Vuoi diventare volontario ?</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">su di noi</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Vuoi diventare volontario ?</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">su di noi</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Vuoi diventare volontario ?</NavDropdown.Item>
+              <NavDropdown.Item href="#action3">sezione 1</NavDropdown.Item>
+              <NavDropdown.Item href="#action4">sezione 2</NavDropdown.Item>
+              <NavDropdown.Item href="#action3">sezione 3</NavDropdown.Item>
+              <NavDropdown.Item href="#action4">sezione 4</NavDropdown.Item>
+              <NavDropdown.Item href="#action3">sezione 5</NavDropdown.Item>
+              <NavDropdown.Item href="#action4">sezione 6</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="#nuovolink">Link</Nav.Link>
           </Nav>
-          <Form className="d-flex">
-            <Button variant="outline-danger">LOGIN</Button>
-          </Form>
+          <Button variant="outline-dark" className="rounded-pill me-1 py-0">
+            REGISTER
+          </Button>
+          <Button variant="outline-dark" className="rounded-pill py-0">
+            LOGIN
+          </Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

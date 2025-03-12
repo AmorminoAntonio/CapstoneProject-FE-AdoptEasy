@@ -1,13 +1,14 @@
 import { Container, Row, Col, Card, Button, Carousel, Image } from "react-bootstrap";
+import Marquee from "react-fast-marquee";
 
 const Homepage = () => {
   /* qui devo inserire la logica e le chiamate per popolare la pagina iniziale del sito */
 
   return (
     <>
-      <Container>
+      <Container fluid>
         {/* Intestazione principale */}
-        <Row className="mt-5 text-center">
+        <Row className="mt-3 text-center">
           <Col>
             <Image className="rounded-circle" src="/src/assets/EASY (1).png" width={150} />
             <h1>Dona una Nuova Vita a un Amico a Quattro Zampe</h1>
