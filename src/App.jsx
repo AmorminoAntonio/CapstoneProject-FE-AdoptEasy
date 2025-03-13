@@ -2,8 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyNav from "./components/MyNav";
-import Homepage from "./components/Homepage";
-import Postspage from "./components/Postspage";
+import Homepage from "./features/Homepage";
+import Postspage from "./features/Postspage";
 import Footer from "./components/Footer";
 
 function App() {
