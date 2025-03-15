@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Button, Form, Modal } from "react-bootstrap";
 
-const LoginModal = ({ show, handleClose }) => {
+const LoginModal = ({ show, handleClose, handleLogin }) => {
   const initialFormState = { username: "", password: "" };
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState({});
+  const [loginError, setLoginError] = useState("");
 
-  // ✅ Reset campi quando il modale si chiude
+  // Reset campi quando il modale si chiude
   useEffect(() => {
     if (!show) setFormData(initialFormState);
   }, [show]);
@@ -24,12 +25,44 @@ const LoginModal = ({ show, handleClose }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validazione dei dati
     if (validate()) {
-      console.log("Dati login inviati:", formData);
-      setFormData(initialFormState); // ✅ Resetta i campi dopo l'invio
-      handleClose();
+      try {
+        const response = await fetch("http://localhost:8080/utente/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          console.log("Login effettuato con successo", data);
+
+          // Verifica che la risposta contenga un token
+          if (data && data.token) {
+            // Memorizza il token nel localStorage
+            localStorage.setItem("token", data.token);
+
+            // Passa i dati dell'utente al componente padre
+            handleLogin(data);
+
+            // Chiudi il modale
+            handleClose();
+          } else {
+            setLoginError("Token non trovato nella risposta del server.");
+          }
+        } else {
+          setLoginError(data.message || "Credenziali errate");
+        }
+      } catch (error) {
+        console.error("Errore di login:", error);
+        setLoginError("Si è verificato un errore durante il login.");
+      }
     }
   };
 
@@ -41,7 +74,7 @@ const LoginModal = ({ show, handleClose }) => {
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label>username</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control type="text" name="username" value={formData.username} onChange={handleChange} required />
             {errors.email && <p className="text-danger">{errors.email}</p>}
           </Form.Group>
@@ -52,6 +85,8 @@ const LoginModal = ({ show, handleClose }) => {
             {errors.password && <p className="text-danger">{errors.password}</p>}
           </Form.Group>
 
+          {loginError && <p className="text-danger">{loginError}</p>}
+
           <Button variant="primary" type="submit">
             Login
           </Button>
@@ -60,5 +95,4 @@ const LoginModal = ({ show, handleClose }) => {
     </Modal>
   );
 };
-
 export default LoginModal;

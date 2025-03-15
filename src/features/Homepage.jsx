@@ -1,7 +1,6 @@
 import { Container, Row, Col, Card, Button, Carousel, Image } from "react-bootstrap";
-import CarouselHomeImg from "./CarouselHomeImg";
-import Marquee from "react-fast-marquee";
 import CarouselBottomHome from "./CarouselBottomHome";
+import CarouselHomeImg from "./CarouselHomeImg";
 
 const Homepage = () => {
   /* qui devo inserire la logica e le chiamate per popolare la pagina iniziale del sito */
@@ -11,7 +10,7 @@ const Homepage = () => {
       <CarouselHomeImg />
       <Container className="">
         {/* Intestazione principale */}
-        <Row className="mt-3 text-center">
+        <Row className="mt-4 text-center">
           <Col>
             <h1>Dona una Nuova Vita a un Amico a Quattro Zampe</h1>
             <p>Adottare un animale significa regalargli un futuro migliore. Scopri come puoi fare la differenza e dare una casa a un amico a quattro zampe.</p>
@@ -19,7 +18,7 @@ const Homepage = () => {
         </Row>
 
         {/* Sezione principale: Storia di noi e citazioni */}
-        <Row md={2} className="mt-5 justify-content-center text-center mb-5">
+        <Row className="mt-5  text-center mb-5">
           <Col className="border-2 border rounded-4 p-4">
             <h2>La Nostra Storia</h2>
             <p>
@@ -36,36 +35,33 @@ const Homepage = () => {
             </p>
           </Col>
         </Row>
-
-        <Container className="my-5">
-          <Row>
-            <Col md={6}>
-              <h3>L'importanza di Adottare un Animale</h3>
-              <p>
-                L'adozione di un animale non è solo un gesto di amore, ma anche un'azione che aiuta a ridurre il numero di animali randagi e abbandonati. Molti
-                animali in rifugio sono in cerca di una seconda opportunità per una vita migliore.
-              </p>
-              <p>
-                Adottando un animale, non solo gli offri una casa sicura, ma contribuisci anche a promuovere il benessere degli animali e a sensibilizzare la
-                comunità sull'importanza di trattare gli animali con rispetto e cura.
-              </p>
-            </Col>
-            <Col md={6}>
-              <h3>Un Gesto che Cambia la Vita</h3>
-              <p>
-                Adottare un animale significa creare un legame profondo che arricchisce la vita di entrambe le parti. Il cane o il gatto che adotti diventerà il
-                tuo compagno fedele, mentre tu farai la differenza nella sua vita.
-              </p>
-              <p>
-                Ogni adozione è una vittoria contro l'abbandono e la sofferenza, e ti dà la possibilità di contribuire a costruire una società più
-                compassionevole.
-              </p>
-            </Col>
-          </Row>
-        </Container>
-
-        {/* Sezione Citazioni e aforismi con Carosello */}
-        <Row md={3} className="mt-5 mb-5 justify-content-center">
+      </Container>
+      <Container className="my-5">
+        <Row>
+          <Col>
+            <h3>L'importanza di Adottare un Animale</h3>
+            <p>
+              L'adozione di un animale non è solo un gesto di amore, ma anche un'azione che aiuta a ridurre il numero di animali randagi e abbandonati. Molti
+              animali in rifugio sono in cerca di una seconda opportunità per una vita migliore.
+            </p>
+            <p>
+              Adottando un animale, non solo gli offri una casa sicura, ma contribuisci anche a promuovere il benessere degli animali e a sensibilizzare la
+              comunità sull'importanza di trattare gli animali con rispetto e cura.
+            </p>
+          </Col>
+          <Col>
+            <h3>Un Gesto che Cambia la Vita</h3>
+            <p>
+              Adottare un animale significa creare un legame profondo che arricchisce la vita di entrambe le parti. Il cane o il gatto che adotti diventerà il
+              tuo compagno fedele, mentre tu farai la differenza nella sua vita.
+            </p>
+            <p>
+              Ogni adozione è una vittoria contro l'abbandono e la sofferenza, e ti dà la possibilità di contribuire a costruire una società più
+              compassionevole.
+            </p>
+          </Col>
+        </Row>
+        <Row md={2} className="mt-5 mb-5 justify-content-center">
           <Col>
             <CarouselBottomHome />
           </Col>
