@@ -11,7 +11,7 @@ const AnimalsPage = () => {
     const fetchAnimalData = async () => {
       try {
         const token =
-          "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbnRvQWRtaW4xIiwicm9sZXMiOiJBRE1JTiIsImV4cCI6MTc0MjA3NjEwMn0.G1umh5Mjk4vJ-DiraFpfSJndrHptu8AYBwh6c9r6BNY"; // Sostituisci con il tuo token
+          "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbnRvQWRtaW4xIiwicm9sZXMiOiJBRE1JTiIsImV4cCI6MTc0MjI1MjYwMX0.RDrLdDKBRRoEfPTun89lnvO0mRhvJ5Vz8zhGPEyxFk8"; // Sostituisci con il tuo token
         const response = await fetch("http://localhost:8080/admin/animal/all", {
           method: "GET",
           headers: {
@@ -62,9 +62,9 @@ const AnimalsPage = () => {
                   <Card.Img height={200} className="object-fit-cover rounded-top rounded-bottom-0" src={animal.photo} />
                   <Card.Body className="d-flex flex-column justify-content-between">
                     <Card.Title className="text-center">{animal.species}</Card.Title>
-                    <Card.Text>
+                    <div>
                       <Accordion defaultActiveKey="1">
-                        <Accordion.Item>
+                        <Accordion.Item eventKey="0">
                           <Accordion.Header>Scopri di più</Accordion.Header>
                           <Accordion.Body>
                             <strong>Razza:</strong> {animal.breed} <br />
@@ -76,7 +76,7 @@ const AnimalsPage = () => {
                           </Accordion.Body>
                         </Accordion.Item>
                       </Accordion>
-                    </Card.Text>
+                    </div>
                     <Button as={Link} to={"/contattaci"} className="mt-auto w-100 py-1">
                       Richiedi Informazioni
                     </Button>

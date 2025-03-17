@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MyNav from "./components/MyNav";
+import MyNav from "./components/navbar/MyNav";
 import Homepage from "./features/Homepage";
 import Footer from "./components/Footer";
 import ChiSiamo from "./features/Chisiamo/ChiSiamo";
@@ -14,6 +14,7 @@ function App() {
     <BrowserRouter>
       <MyNav />
       <Routes>
+        <Route path="/" element={<Homepage />} />
         <Route path="/ChiSiamo" element={<ChiSiamo />} />
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/backoffice" element={<BackOffice />} />

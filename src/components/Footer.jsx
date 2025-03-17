@@ -91,7 +91,7 @@ const Footer = () => {
       </Container>
 
       {/* Sezione Inferiore - Bottone per Tornare in Cima */}
-      <Container fluid className="bg-success py-1">
+      <Container fluid className="bg-primary py-1">
         <Row className="d-flex align-items-center">
           <Col className="text-end">
             <span className="text-light">

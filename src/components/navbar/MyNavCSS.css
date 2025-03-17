@@ -1,0 +1,65 @@
+/* Navbar custom styling */
+.navbar-custom {
+  background-color: #343a40; /* Colore di sfondo scuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Styling for nav links */
+.nav-link-custom {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.nav-link-custom:hover {
+  color: #006eff; /* Colore di hover giallo */
+  text-decoration: underline;
+}
+
+/* Navbar dropdown item styling */
+.dropdown-item-custom {
+  font-weight: 500;
+  color: #495057;
+  transition: color 0.3s ease;
+}
+
+.dropdown-item-custom:hover {
+  color: #006eff; /* Colore di hover giallo */
+  background-color: #f8f9fa;
+}
+
+#navbarScrollingDropdown:hover {
+  color: #006eff; /* Colore di hover giallo */
+  text-decoration: underline;
+}
+
+/* Buttons styling */
+.nav-btn {
+  margin-left: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #006eff; /* Colore di hover giallo */
+  color: #ffffff;
+}
+
+/* Navbar Brand Image */
+.navbar-brand img {
+  margin-right: 15px;
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand img:hover {
+  transform: scale(1.1);
+}
+
+/* Sticky Navbar content */
+.bg-warning {
+  background-color: #f39c12;
+}
