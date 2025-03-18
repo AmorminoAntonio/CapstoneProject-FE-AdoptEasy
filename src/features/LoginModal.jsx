@@ -76,7 +76,7 @@ const LoginModal = ({ show, handleClose, handleLogin }) => {
           <Form.Group className="mb-3">
             <Form.Label>Username</Form.Label>
             <Form.Control type="text" name="username" value={formData.username} onChange={handleChange} required />
-            {errors.email && <p className="text-danger">{errors.email}</p>}
+            {errors.username && <p className="text-danger">{errors.username}</p>}
           </Form.Group>
 
           <Form.Group className="mb-3">

@@ -12,7 +12,7 @@
 }
 
 .animal-image-container:hover {
-  transform: scale(1.1);
+  transform: scale(1.6);
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -50,10 +50,10 @@ button:hover {
 
 .accordion-button {
   font-size: 1.1rem;
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
+  background-color: #ffffff;
+  border: none;
   color: #333;
-  transition: background-color 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .accordion-button:hover {

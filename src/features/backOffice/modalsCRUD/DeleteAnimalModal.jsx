@@ -33,7 +33,7 @@ const DeleteAnimalModal = ({ show, onHide, animal, showMessage, fetchAnimals, to
       <Modal.Body>
         <p>Are you sure you want to delete this animal?</p>
         <Button variant="danger" onClick={handleDelete} disabled={setLoading}>
-          {setLoading ? "Deleting..." : "Delete Animal"}
+          {setLoading ? "Delete" : "Delete Animal"}
         </Button>
       </Modal.Body>
     </Modal>

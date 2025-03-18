@@ -24,7 +24,7 @@ const BackOffice = () => {
 
   // Token
   const token =
-    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbnRvQWRtaW4xIiwicm9sZXMiOiJBRE1JTiIsImV4cCI6MTc0MjI1MjYwMX0.RDrLdDKBRRoEfPTun89lnvO0mRhvJ5Vz8zhGPEyxFk8";
+    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbnRvQWRtaW4xIiwicm9sZXMiOiJBRE1JTiIsImV4cCI6MTc0MjMzMDUzNn0.PmZ-Bvsgk2q1ysJZglKwDdU3iqw-79L0olJbiu2puPg";
 
   // Funzione per visualizzare messaggi di toast
   const showMessage = (message, variant = "success") => {
@@ -92,11 +92,11 @@ const BackOffice = () => {
       </Row>
 
       {/* Accordion for Animal List */}
-      <Accordion className="mt-4">
+      <Accordion className="mt-4 accordion-flush">
         <Accordion.Item eventKey="0">
           <Accordion.Header>Animals List</Accordion.Header>
           <Accordion.Body>
-            <Table striped bordered hover responsive variant="light">
+            <Table striped bordered hover responsive size="sm" variant="light" className="">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -108,7 +108,7 @@ const BackOffice = () => {
               <tbody>
                 {filterAnimals().map((animal) => (
                   <tr key={animal.id}>
-                    <td className="d-flex align-items-center">
+                    <td className="d-flex align-items-center p-0">
                       <div className="animal-image-container">
                         <Image src={animal.photo || "https://via.placeholder.com/100"} alt={animal.species} className="animal-image" />
                       </div>

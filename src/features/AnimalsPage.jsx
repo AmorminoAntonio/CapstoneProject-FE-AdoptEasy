@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Accordion, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Accordion, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const AnimalsPage = () => {
-  const [animals, setAnimals] = useState([]); // Inizializza come array vuoto
+  const [animals, setAnimals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchAnimalData = async () => {
       try {
-        const token =
-          "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbnRvQWRtaW4xIiwicm9sZXMiOiJBRE1JTiIsImV4cCI6MTc0MjI1MjYwMX0.RDrLdDKBRRoEfPTun89lnvO0mRhvJ5Vz8zhGPEyxFk8"; // Sostituisci con il tuo token
-        const response = await fetch("http://localhost:8080/admin/animal/all", {
+        const response = await fetch("http://localhost:8080/adopter/animal/all", {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
@@ -26,7 +23,6 @@ const AnimalsPage = () => {
 
         const data = await response.json();
 
-        // Verifica che 'content' sia un array e settalo nello stato
         if (Array.isArray(data.content)) {
           setAnimals(data.content);
         } else {
@@ -43,7 +39,15 @@ const AnimalsPage = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <Container>
+        <Row className="text-center">
+          <Col>
+            <Spinner animation="border" className="text-primary" />
+          </Col>
+        </Row>
+      </Container>
+    );
   }
 
   if (error) {
@@ -77,7 +81,7 @@ const AnimalsPage = () => {
                         </Accordion.Item>
                       </Accordion>
                     </div>
-                    <Button as={Link} to={"/contattaci"} className="mt-auto w-100 py-1">
+                    <Button as={Link} to={"/contattaci"} className="mt-auto py-1">
                       Richiedi Informazioni
                     </Button>
                   </Card.Body>

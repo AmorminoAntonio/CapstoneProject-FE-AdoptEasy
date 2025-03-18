@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 
 const MarqueeCarouselFooter = () => {
   return (
-    <Marquee className="border-5 border-top border-bottom border-warning mb-1 mt-5">
+    <Marquee speed={20} className="border-5 border-top border-bottom border-warning mb-1 mt-5">
       <Image
         height={200}
         src="https://images.unsplash.com/photo-1533152162573-93ad94eb20f6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y2F2aWF8ZW58MHwwfDB8fHww"

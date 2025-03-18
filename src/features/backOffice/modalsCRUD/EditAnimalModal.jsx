@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, Spinner } from "react-bootstrap";
 
 const EditAnimalModal = ({ show, onHide, animal, showMessage, fetchAnimals, token, setLoading }) => {
   const [editAnimal, setEditAnimal] = useState(animal || {});
@@ -44,7 +44,6 @@ const EditAnimalModal = ({ show, onHide, animal, showMessage, fetchAnimals, toke
       <Modal.Body>
         {editAnimal ? (
           <Form onSubmit={handleUpdate}>
-            {" "}
             {/* Usa onSubmit per inviare il modulo */}
             <Form.Group controlId="formEditSpecies">
               <Form.Label>Name</Form.Label>
@@ -56,16 +55,16 @@ const EditAnimalModal = ({ show, onHide, animal, showMessage, fetchAnimals, toke
             </Form.Group>
             {/* Aggiungi altri campi come per species e breed */}
             <div className="d-flex justify-content-between">
-              <Button variant="secondary" onClick={onHide}>
+              <Button variant="success mt-4" onClick={onHide}>
                 Cancel
-              </Button>{" "}
-              <Button variant="primary" type="submit" disabled={setLoading}>
+              </Button>
+              <Button variant="primary mt-4" type="submit" disabled={setLoading}>
                 {setLoading ? "Saving..." : "Save Changes"}
               </Button>
             </div>
           </Form>
         ) : (
-          <div>Loading...</div>
+          <Spinner variant="primary" animation="border" />
         )}
       </Modal.Body>
     </Modal>
