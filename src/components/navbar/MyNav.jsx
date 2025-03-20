@@ -4,18 +4,31 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RegisterModal from "../../features/RegisterModal";
 import { useState, useEffect } from "react";
 import LoginModal from "../../features/LoginModal";
 import { jwtDecode } from "jwt-decode";
+import { Toast, ToastContainer } from "react-bootstrap";
 import "./MyNavCSS.css";
 
 const MyNav = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-  const [user, setUser] = useState(null); // Stato che tiene traccia dell'utente loggato
-  const [role, setRole] = useState(null); // Stato per il ruolo
+  const [user, setUser] = useState(null);
+  const [role, setRole] = useState(null);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastVariant, setToastVariant] = useState("success");
+
+  const navigate = useNavigate(); // UseNavigate hook
+
+  // Funzione per mostrare il Toast
+  const showMessage = (message, variant = "success") => {
+    setToastMessage(message);
+    setToastVariant(variant);
+    setShowToast(true);
+  };
 
   const handleLogin = (response) => {
     console.log("Risposta ricevuta:", response);
@@ -42,6 +55,8 @@ const MyNav = () => {
     setUser(null);
     setRole(null);
     localStorage.removeItem("authToken");
+    showMessage("Logout avvenuto con successo", "success");
+    navigate("/"); // Reindirizza alla home page
   };
 
   const handleRegister = (userData) => {
@@ -49,6 +64,7 @@ const MyNav = () => {
     setRole(userData.role);
   };
 
+  // Effettua il controllo per la scadenza del token
   useEffect(() => {
     const token = localStorage.getItem("authToken");
 
@@ -58,6 +74,15 @@ const MyNav = () => {
           const decodedToken = jwtDecode(token);
           setUser(decodedToken);
           setRole(decodedToken.roles);
+
+          // Controlla se il token è scaduto
+          const expirationTime = decodedToken.exp * 1000; // Scadenza in millisecondi
+          const currentTime = Date.now();
+
+          if (currentTime > expirationTime) {
+            handleLogout(); // Esegui il logout se il token è scaduto
+            showMessage("Token scaduto. Eseguito il logout automaticamente.", "danger");
+          }
         } catch (error) {
           console.error("Errore nella decodifica del token da localStorage:", error);
         }
@@ -146,8 +171,15 @@ const MyNav = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
       <RegisterModal show={showRegister} handleClose={() => setShowRegister(false)} handleRegister={handleRegister} />
       <LoginModal show={showLogin} handleClose={() => setShowLogin(false)} handleLogin={handleLogin} />
+      {/* Toast */}
+      <ToastContainer className="custom-toast-container" position="top-center">
+        <Toast show={showToast} onClose={() => setShowToast(false)} delay={3000} bg={toastVariant} autohide>
+          <Toast.Body>{toastMessage}</Toast.Body>
+        </Toast>
+      </ToastContainer>
     </>
   );
 };

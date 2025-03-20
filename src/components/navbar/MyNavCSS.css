@@ -63,3 +63,17 @@
 .bg-warning {
   background-color: #f39c12;
 }
+
+.custom-toast-container {
+  position: fixed;
+  top: 20px; /* Distanza dal top */
+  left: 50%;
+  transform: translateX(-50%); /* Centra orizzontalmente */
+  z-index: 1050; /* Assicurati che sia sopra altri contenuti */
+  width: auto;
+  max-width: 80%; /* Imposta la larghezza massima del toast (puoi modificarlo) */
+}
+
+.toast {
+  border-radius: 10px; /* Aggiungi angoli arrotondati se desideri */
+}

@@ -46,7 +46,7 @@ const LoginModal = ({ show, handleClose, handleLogin }) => {
           // Verifica che la risposta contenga un token
           if (data && data.token) {
             // Memorizza il token nel localStorage
-            localStorage.setItem("token", data.token);
+            localStorage.setItem("authToken", data.token);
 
             // Passa i dati dell'utente al componente padre
             handleLogin(data);

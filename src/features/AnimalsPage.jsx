@@ -66,7 +66,7 @@ const AnimalsPage = () => {
                   <Card.Img height={200} className="object-fit-cover rounded-top rounded-bottom-0" src={animal.photo} />
                   <Card.Body className="d-flex flex-column justify-content-between">
                     <Card.Title className="text-center">{animal.species}</Card.Title>
-                    <div>
+                    <Col>
                       <Accordion defaultActiveKey="1">
                         <Accordion.Item eventKey="0">
                           <Accordion.Header>Scopri di più</Accordion.Header>
@@ -77,13 +77,13 @@ const AnimalsPage = () => {
                             <strong>Data disponibile per l'adozione:</strong> {animal.availableSince} <br />
                             <strong>Descrizione:</strong> {animal.description} <br />
                             <strong>Osservazioni post ritrovamento:</strong> {animal.observation}
+                            <Button as={Link} to={"/contattaci"} className="mt-auto py-1">
+                              richiedi appuntamento
+                            </Button>
                           </Accordion.Body>
                         </Accordion.Item>
                       </Accordion>
-                    </div>
-                    <Button as={Link} to={"/contattaci"} className="mt-auto py-1">
-                      Richiedi Informazioni
-                    </Button>
+                    </Col>
                   </Card.Body>
                 </Card>
               </Col>
