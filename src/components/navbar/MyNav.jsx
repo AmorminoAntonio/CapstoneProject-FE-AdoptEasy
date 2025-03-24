@@ -1,13 +1,10 @@
-import { Col, Image, Row } from "react-bootstrap";
+import { Col, Image, Row, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useNavigate } from "react-router-dom";
-import RegisterModal from "../../features/RegisterModal";
+import RegisterModal from "../RegisterModal";
 import { useState, useEffect } from "react";
-import LoginModal from "../../features/LoginModal";
+import LoginModal from "../LoginModal";
 import { jwtDecode } from "jwt-decode";
 import { Toast, ToastContainer } from "react-bootstrap";
 import "./MyNavCSS.css";
@@ -21,9 +18,8 @@ const MyNav = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [toastVariant, setToastVariant] = useState("success");
 
-  const navigate = useNavigate(); // UseNavigate hook
+  const navigate = useNavigate();
 
-  // Funzione per mostrare il Toast
   const showMessage = (message, variant = "success") => {
     setToastMessage(message);
     setToastVariant(variant);
@@ -31,7 +27,6 @@ const MyNav = () => {
   };
 
   const handleLogin = (response) => {
-    console.log("Risposta ricevuta:", response);
     if (response && response.token) {
       const token = response.token;
       if (typeof token === "string") {
@@ -43,11 +38,7 @@ const MyNav = () => {
         } catch (error) {
           console.error("Errore nella decodifica del token:", error);
         }
-      } else {
-        console.error("Il token non è una stringa valida:", token);
       }
-    } else {
-      console.error("La risposta non contiene un token valido", response);
     }
   };
 
@@ -56,7 +47,7 @@ const MyNav = () => {
     setRole(null);
     localStorage.removeItem("authToken");
     showMessage("Logout avvenuto con successo", "success");
-    navigate("/"); // Reindirizza alla home page
+    navigate("/homepage");
   };
 
   const handleRegister = (userData) => {
@@ -64,7 +55,6 @@ const MyNav = () => {
     setRole(userData.role);
   };
 
-  // Effettua il controllo per la scadenza del token
   useEffect(() => {
     const token = localStorage.getItem("authToken");
 
@@ -75,12 +65,11 @@ const MyNav = () => {
           setUser(decodedToken);
           setRole(decodedToken.roles);
 
-          // Controlla se il token è scaduto
-          const expirationTime = decodedToken.exp * 1000; // Scadenza in millisecondi
+          const expirationTime = decodedToken.exp * 1000;
           const currentTime = Date.now();
 
           if (currentTime > expirationTime) {
-            handleLogout(); // Esegui il logout se il token è scaduto
+            handleLogout();
             showMessage("Token scaduto. Eseguito il logout automaticamente.", "danger");
           }
         } catch (error) {
@@ -88,12 +77,12 @@ const MyNav = () => {
         }
       }
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <>
-      <Container fluid className="bg-warning">
-        <Row className="text-center pt-2">
+      <Container fluid className="banner">
+        <Row className="text-center text-bg-primary pt-2">
           <Col>
             <h6 className="fw-lighter">
               <span className="fw-bold">ADOPT EASY</span> Associazione Tutela Animali - Sede legale: S.P Pavia n°36 - Valmadonna(ALESSANDRIA)
@@ -101,14 +90,14 @@ const MyNav = () => {
           </Col>
         </Row>
       </Container>
-      <Navbar sticky="top" expand="lg" className="bg-light py-2">
+      <Navbar sticky="top" expand="lg" className="navbar-custom bg-white shadow-lg">
         <Container>
           <Navbar.Brand as={Link} to="/">
-            <Image src="/src/assets/ADOPT EASY (1).svg" width={100} />
+            <Image src="/src/assets/ADOPT EASY (1).svg" width={80} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="me-auto d-flex align-items-center">
               <Nav.Link className="nav-link-custom" as={Link} to="/homepage">
                 HOME
               </Nav.Link>
@@ -151,30 +140,32 @@ const MyNav = () => {
                 </Nav.Link>
               )}
             </Nav>
-            {!user ? (
-              <>
-                <Button variant="outline-dark" onClick={() => setShowRegister(true)} className="nav-btn">
-                  Registrati
-                </Button>
-                <Button variant="outline-dark" onClick={() => setShowLogin(true)} className="nav-btn">
-                  Login
-                </Button>
-              </>
-            ) : (
-              <>
-                <span>Benvenuto, {user.sub}!</span>
-                <Button variant="outline-dark" className="ms-4 nav-btn" onClick={handleLogout}>
-                  Logout
-                </Button>
-              </>
-            )}
+            <div className="d-flex align-items-center">
+              {!user ? (
+                <>
+                  <Button variant="outline-dark" onClick={() => setShowRegister(true)} className="nav-btn">
+                    Registrati
+                  </Button>
+                  <Button variant="outline-dark" onClick={() => setShowLogin(true)} className="nav-btn">
+                    Login
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <span className="navbar-text">Benvenuto, {user.sub}!</span>
+                  <Button variant="outline-dark" className="ms-4 nav-btn" onClick={handleLogout}>
+                    Logout
+                  </Button>
+                </>
+              )}
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
       <RegisterModal show={showRegister} handleClose={() => setShowRegister(false)} handleRegister={handleRegister} />
       <LoginModal show={showLogin} handleClose={() => setShowLogin(false)} handleLogin={handleLogin} />
-      {/* Toast */}
+
       <ToastContainer className="custom-toast-container" position="top-center">
         <Toast show={showToast} onClose={() => setShowToast(false)} delay={3000} bg={toastVariant} autohide>
           <Toast.Body>{toastMessage}</Toast.Body>

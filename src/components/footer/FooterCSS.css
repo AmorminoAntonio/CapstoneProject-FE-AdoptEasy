@@ -1,0 +1,122 @@
+/* Footer Generale */
+footer {
+  background-color: #2c3e50; /* Colore scuro per il footer */
+  color: #ecf0f1; /* Colore chiaro per il testo */
+  font-family: "Roboto", sans-serif;
+  padding: 30px 0;
+}
+
+footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+footer h5 {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+footer p {
+  color: #bdc3c7; /* Colore testo chiaro per i paragrafi */
+  font-size: 14px;
+}
+
+/* Prima Sezione - Citazione e Descrizione */
+footer .quote-section {
+  background-color: #34495e; /* Colore di sfondo scuro per la citazione */
+  padding: 40px 0;
+  border-radius: 10px;
+}
+
+footer .quote-section p {
+  font-size: 1.2rem;
+  text-align: center;
+  font-style: italic;
+  color: #ecf0f1;
+  margin-bottom: 15px;
+}
+
+footer .quote-section p.fs-6 {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+footer .quote-section .text-center {
+  margin-bottom: 30px;
+}
+
+/* Seconda Sezione - Link Utili */
+footer .useful-links {
+  background-color: #f39c12; /* Colore giallo arancio brillante */
+  padding: 40px 0;
+}
+
+footer .useful-links .col-md-2 {
+  margin-bottom: 30px;
+}
+
+footer .useful-links .text-center img {
+  max-width: 100%;
+  height: auto;
+}
+
+footer .useful-links .fw-bold {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+footer .useful-links .text-dark {
+  color: #2c3e50;
+}
+
+footer .useful-links .text-dark:hover {
+  color: #1abc9c; /* Colore verde chiaro al passaggio del mouse */
+}
+
+/* Sezione Social con icone */
+footer .social-icons {
+  background-color: #2c3e50; /* Colore scuro per il fondo della sezione social */
+  padding: 20px 0;
+}
+
+footer .social-icons .icon-link-hover:hover {
+  transform: scale(1.1); /* Effetto di ingrandimento al passaggio del mouse */
+  transition: transform 0.3s ease;
+}
+
+footer .social-icons .icon-link-hover {
+  color: #ecf0f1; /* Colore delle icone */
+  transition: color 0.3s ease;
+}
+
+footer .social-icons .icon-link-hover:hover {
+  color: #1abc9c; /* Verde chiaro al passaggio del mouse */
+}
+
+/* Sezione Inferiore - Copyright e Button per Tornare in Cima */
+footer .copyright-section {
+  background-color: #3498db; /* Colore blu per il copyright */
+  padding: 10px 0;
+}
+
+footer .copyright-section .text-center {
+  font-size: 14px;
+  color: #ecf0f1;
+}
+
+footer .copyright-section .text-end button {
+  border: 1px solid #ecf0f1; /* Bordo chiaro per il bottone */
+  color: #ecf0f1; /* Colore testo chiaro */
+  background-color: transparent; /* Sfondo trasparente per il bottone */
+  font-size: 1.2rem;
+  border-radius: 25px;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+footer .copyright-section .text-end button:hover {
+  background-color: #1abc9c; /* Colore verde chiaro per il bottone al passaggio del mouse */
+  color: #2c3e50; /* Testo scuro al passaggio del mouse */
+}

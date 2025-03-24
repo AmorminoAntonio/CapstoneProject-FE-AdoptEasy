@@ -1,31 +1,67 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Form, Modal, Spinner } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { updateAnimalAsync, createAnimal, deleteAnimalAsync, fetchAnimals } from "../../../redux/slices/animalSlice";
+import { Table, Button, Form, Modal, Spinner, Row, Col, Image } from "react-bootstrap";
+import { DatabaseAdd, PencilSquare, Trash3 } from "react-bootstrap-icons";
 
 const AnimalManagement = ({ handleToastShow }) => {
-  const dispatch = useDispatch();
-  const { animals, loading } = useSelector((state) => state.animals); // Assicurati di avere gli animali nello store
+  const [animals, setAnimals] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const [showAnimalModal, setShowAnimalModal] = useState(false);
+  const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
   const [animalToEdit, setAnimalToEdit] = useState(null);
+  const [animalToDelete, setAnimalToDelete] = useState(null); // stato per il delete
+
   const [species, setSpecies] = useState("");
   const [breed, setBreed] = useState("");
   const [foundDate, setFoundDate] = useState("");
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("AVAILABLE"); // Default to AVAILABLE
+  const [status, setStatus] = useState("AVAILABLE");
   const [availableSince, setAvailableSince] = useState("");
   const [photo, setPhoto] = useState("");
   const [foundLocation, setFoundLocation] = useState("");
   const [observation, setObservation] = useState("");
 
-  // Caricamento degli animali all'avvio del componente
-  useEffect(() => {
-    dispatch(fetchAnimals()); // Assicurati che fetchAnimals sia un'azione per caricare gli animali
-  }, [dispatch]);
+  // Filtri
+  const [searchSpecies, setSearchSpecies] = useState("");
+  const [searchBreed, setSearchBreed] = useState("");
+  const [searchFoundLocation, setSearchFoundLocation] = useState("");
+  const [searchFoundDate, setSearchFoundDate] = useState("");
 
-  // Funzione per gestire l'invio del modulo
+  useEffect(() => {
+    const fetchAnimals = async () => {
+      setLoading(true);
+      try {
+        const authToken = localStorage.getItem("authToken");
+        const headers = { "Content-Type": "application/json" };
+        if (authToken) {
+          headers["Authorization"] = `Bearer ${authToken}`;
+        }
+
+        const response = await fetch("http://localhost:8080/admin/animal/all", {
+          method: "GET",
+          headers: headers,
+        });
+
+        if (!response.ok) {
+          throw new Error("Errore nel caricamento degli animali");
+        }
+
+        const data = await response.json();
+        setAnimals(data.content);
+      } catch (error) {
+        console.error("Errore nel caricamento degli animali:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAnimals();
+  }, []);
+
+  // Gestione dell'invio del modulo
   const handleAnimalSubmit = async (e) => {
     e.preventDefault();
+
     const animalData = {
       species,
       breed,
@@ -39,23 +75,51 @@ const AnimalManagement = ({ handleToastShow }) => {
     };
 
     try {
-      if (animalToEdit) {
-        // Se stiamo modificando un animale
-        dispatch(updateAnimalAsync({ ...animalToEdit, ...animalData }));
+      const authToken = localStorage.getItem("authToken");
+      const headers = { "Content-Type": "application/json" };
+      if (authToken) {
+        headers["Authorization"] = `Bearer ${authToken}`;
+      }
+
+      if (animalToEdit && animalToEdit.id) {
+        // Modifica animale esistente
+        const response = await fetch(`http://localhost:8080/admin/animal/update/${animalToEdit.id}`, {
+          method: "PUT",
+          headers: headers,
+          body: JSON.stringify(animalData),
+        });
+
+        if (!response.ok) {
+          throw new Error("Errore nell'aggiornare l'animale");
+        }
+
+        const data = await response.json();
+        setAnimals(animals.map((animal) => (animal.id === animalToEdit.id ? data : animal)));
         handleToastShow("Animale aggiornato con successo!");
       } else {
-        // Se stiamo creando un nuovo animale
-        dispatch(createAnimal(animalData));
+        // Crea nuovo animale
+        const response = await fetch(`http://localhost:8080/admin/animal/signup`, {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(animalData),
+        });
+
+        if (!response.ok) {
+          throw new Error("Errore nell'aggiungere l'animale");
+        }
+
+        const data = await response.json();
+        setAnimals([...animals, data]);
         handleToastShow("Nuovo animale aggiunto con successo!");
       }
+
+      setShowAnimalModal(false);
+      resetAnimalForm();
     } catch (error) {
-      handleToastShow("Errore nell'aggiungere o aggiornare l'animale!", error, "danger");
+      handleToastShow("Errore nell'aggiungere o aggiornare l'animale!", error.message, "danger");
     }
-    setShowAnimalModal(false);
-    resetAnimalForm();
   };
 
-  // Funzione per resettare il modulo
   const resetAnimalForm = () => {
     setSpecies("");
     setBreed("");
@@ -69,13 +133,31 @@ const AnimalManagement = ({ handleToastShow }) => {
     setAnimalToEdit(null);
   };
 
-  // Funzione per eliminare un animale
-  const handleDeleteAnimal = (id) => {
-    dispatch(deleteAnimalAsync(id));
-    handleToastShow("Animale eliminato con successo!", "success");
+  const handleDeleteAnimal = async () => {
+    try {
+      const authToken = localStorage.getItem("authToken");
+      const headers = { "Content-Type": "application/json" };
+      if (authToken) {
+        headers["Authorization"] = `Bearer ${authToken}`;
+      }
+
+      const response = await fetch(`http://localhost:8080/admin/animal/delete/${animalToDelete.id}`, {
+        method: "DELETE",
+        headers: headers,
+      });
+
+      if (!response.ok) {
+        throw new Error("Errore nell'eliminazione dell'animale");
+      }
+
+      setAnimals(animals.filter((animal) => animal.id !== animalToDelete.id));
+      handleToastShow("Animale eliminato con successo!");
+      setShowDeleteConfirmModal(false);
+    } catch (error) {
+      handleToastShow("Errore nell'eliminazione dell'animale!", error.message, "danger");
+    }
   };
 
-  // Funzione per aprire il modal per aggiungere o modificare un animale
   const handleShowAnimalModal = (animal = null) => {
     if (animal) {
       setAnimalToEdit(animal);
@@ -94,14 +176,52 @@ const AnimalManagement = ({ handleToastShow }) => {
     setShowAnimalModal(true);
   };
 
+  // Funzione per filtrare gli animali in base ai criteri di ricerca
+  const filteredAnimals = animals.filter((animal) => {
+    return (
+      (searchSpecies ? animal.species && animal.species.toLowerCase().includes(searchSpecies.toLowerCase()) : true) &&
+      (searchBreed ? animal.breed && animal.breed.toLowerCase().includes(searchBreed.toLowerCase()) : true) &&
+      (searchFoundLocation ? animal.foundLocation && animal.foundLocation.toLowerCase().includes(searchFoundLocation.toLowerCase()) : true) &&
+      (searchFoundDate ? animal.foundDate === searchFoundDate : true)
+    );
+  });
+
   return (
     <>
-      <Button onClick={() => handleShowAnimalModal()}>Aggiungi Animale</Button>
-      <Table striped bordered hover>
+      <Button variant="outline-success" onClick={() => handleShowAnimalModal()}>
+        <span className="d-flex align-items-center">
+          <strong>Aggiungi Animale</strong> <DatabaseAdd className="fs-3 ms-2" />
+        </span>
+      </Button>
+
+      {/* Sezione di ricerca */}
+      <Row className="my-3">
+        <Col md={3}>
+          <Form.Control type="text" placeholder="Cerca Specie" value={searchSpecies} onChange={(e) => setSearchSpecies(e.target.value)} />
+        </Col>
+        <Col md={3}>
+          <Form.Control type="text" placeholder="Cerca Razza" value={searchBreed} onChange={(e) => setSearchBreed(e.target.value)} />
+        </Col>
+        <Col md={3}>
+          <Form.Control
+            type="text"
+            placeholder="Cerca Posizione Ritrovamento"
+            value={searchFoundLocation}
+            onChange={(e) => setSearchFoundLocation(e.target.value)}
+          />
+        </Col>
+        <Col md={3}>
+          <Form.Control type="date" value={searchFoundDate} onChange={(e) => setSearchFoundDate(e.target.value)} />
+        </Col>
+      </Row>
+
+      {/* Tabella degli animali filtrata */}
+      <Table striped bordered hover responsive>
         <thead>
           <tr>
-            <th>Specie</th>
+            <th>Nome</th>
             <th>Razza</th>
+            <th>Loguo di Ritrovamento</th>
             <th>Data di Ritrovamento</th>
             <th>Azioni</th>
           </tr>
@@ -114,17 +234,27 @@ const AnimalManagement = ({ handleToastShow }) => {
               </td>
             </tr>
           ) : (
-            animals.map((animal) => (
+            filteredAnimals.map((animal) => (
               <tr key={animal.id}>
-                <td>{animal.species}</td>
+                <td>
+                  <Image src={animal.photo} width={50} className="rounded me-2" alt="" />
+                  {animal.species}
+                </td>
                 <td>{animal.breed}</td>
+                <td>{animal.foundLocation}</td>
                 <td>{animal.foundDate}</td>
                 <td>
-                  <Button variant="info" onClick={() => handleShowAnimalModal(animal)}>
-                    Modifica
-                  </Button>{" "}
-                  <Button variant="danger" onClick={() => handleDeleteAnimal(animal.id)}>
-                    Elimina
+                  <Button variant="outline-warning border-2 me-1" onClick={() => handleShowAnimalModal(animal)}>
+                    <PencilSquare className="fs-4" />
+                  </Button>
+                  <Button
+                    variant="outline-dark border-2"
+                    onClick={() => {
+                      setAnimalToDelete(animal);
+                      setShowDeleteConfirmModal(true);
+                    }}
+                  >
+                    <Trash3 className="fs-4" />
                   </Button>
                 </td>
               </tr>
@@ -185,6 +315,22 @@ const AnimalManagement = ({ handleToastShow }) => {
             </Button>
           </Form>
         </Modal.Body>
+      </Modal>
+
+      {/* Modal di conferma eliminazione */}
+      <Modal show={showDeleteConfirmModal} onHide={() => setShowDeleteConfirmModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Conferma Eliminazione</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Sei sicuro di voler eliminare questo animale?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteConfirmModal(false)}>
+            Annulla
+          </Button>
+          <Button variant="danger" onClick={handleDeleteAnimal}>
+            Elimina
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );

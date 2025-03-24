@@ -1,0 +1,117 @@
+/* Generale */
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #fafafa;
+}
+
+.headline {
+  font-size: 2.5rem;
+  color: #ff7f00;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 15px;
+}
+
+.story-card {
+  background-color: #fff4e1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.btn-custom {
+  border-radius: 25px;
+  padding: 10px 30px;
+  background-color: #ff7f00;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #ff6600;
+}
+
+/* Animali in Adozione */
+.adoption-card {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.adoption-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.animal-img {
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.animal-img:hover {
+  transform: scale(1.1);
+}
+
+/* Stile del carosello */
+.testimonial-carousel .carousel-inner {
+  position: relative;
+  padding: 40px 0; /* Aggiungiamo un po' di spazio sopra e sotto per far respirare il carosello */
+}
+
+/* Ogni item del carosello con sfondo e animazione */
+.testimonial-item {
+  background-color: #fce6a5; /* Colore di default */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-size: 1.2rem;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Aggiungere un effetto di animazione */
+.testimonial-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Personalizzare il testo e il footer */
+.testimonial-item p {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.testimonial-item footer {
+  font-weight: bold;
+  color: #ff7f00;
+}
+
+/* Stile per il carosello */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #ff7f00;
+  border-radius: 50%;
+}
+
+/* Aggiungi bordi agli item */
+.carousel-item {
+  padding: 20px;
+}

@@ -11,7 +11,7 @@ const ToastMessage = ({ toastMessage, setToastMessage }) => {
 
   return (
     toastMessage.message && (
-      <Toast onClose={() => setToastMessage({ message: "", type: "" })} show={true} delay={3000} autohide className={`text-white bg-${toastMessage.type}`}>
+      <Toast onClose={() => setToastMessage({ message: "", type: "" })} show={true} delay={3000} autohide className={`my-2 text-white bg-${toastMessage.type}`}>
         <Toast.Body>{toastMessage.message}</Toast.Body>
       </Toast>
     )

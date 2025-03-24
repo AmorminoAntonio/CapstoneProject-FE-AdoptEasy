@@ -23,11 +23,10 @@ const AnimalsPage = () => {
 
         const data = await response.json();
 
-        if (Array.isArray(data.content)) {
-          setAnimals(data.content);
-        } else {
-          throw new Error("Received data.content is not an array");
-        }
+        const availableAnimals = data.content.filter((animal) => animal.status !== "ADOPTED");
+
+        setAnimals(availableAnimals);
+        console.log(availableAnimals);
       } catch (error) {
         setError(error.message);
       } finally {

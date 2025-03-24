@@ -1,79 +1,61 @@
-/* Navbar custom styling */
-.navbar-custom {
-  background-color: #343a40; /* Colore di sfondo scuro */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Link di navigazione */
+.nav-link-custom {
+  font-weight: 600;
+  color: #003366; /* Blu scuro per un testo elegante e professionale */
+  border-radius: 10px;
   transition: all 0.3s ease;
 }
 
-/* Styling for nav links */
-.nav-link-custom {
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: color 0.3s ease;
-}
-
+/* Hover per i link */
 .nav-link-custom:hover {
-  color: #006eff; /* Colore di hover giallo */
-  text-decoration: underline;
+  background-color: #ffcc0063; /* Giallo brillante per l'hover */
+  color: #003366; /* Colore blu scuro per mantenere il contrasto */
+  transform: scale(1.05); /* Leggera espansione al passaggio del mouse */
 }
 
-/* Navbar dropdown item styling */
+/* Dropdown */
+.navbar .dropdown-menu {
+  background-color: #ffffff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
 .dropdown-item-custom {
-  font-weight: 500;
-  color: #495057;
-  transition: color 0.3s ease;
+  font-weight: 600;
+  color: #003366;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 .dropdown-item-custom:hover {
-  color: #006eff; /* Colore di hover giallo */
-  background-color: #f8f9fa;
+  background-color: #ffcc0063;
+  color: #003366;
+  transform: scale(1.05);
 }
 
-#navbarScrollingDropdown:hover {
-  color: #006eff; /* Colore di hover giallo */
-  text-decoration: underline;
-}
-
-/* Buttons styling */
+/* Pulsanti */
 .nav-btn {
-  margin-left: 15px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 10px 30px;
+  border-radius: 40px;
+  margin-left: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: 2px solid #003366; /* Blu scuro per il bordo */
+  color: #003366; /* Blu scuro per il testo */
 }
 
 .nav-btn:hover {
-  background-color: #006eff; /* Colore di hover giallo */
-  color: #ffffff;
-}
-
-/* Navbar Brand Image */
-.navbar-brand img {
-  margin-right: 15px;
-  transition: transform 0.3s ease;
-}
-
-.navbar-brand img:hover {
+  background-color: #0080ff; /* Blu scuro per l'hover */
+  color: #ffffff; /* Colore bianco per contrastare */
   transform: scale(1.1);
 }
 
-/* Sticky Navbar content */
-.bg-warning {
-  background-color: #f39c12;
-}
-
+/* Toast */
 .custom-toast-container {
-  position: fixed;
-  top: 20px; /* Distanza dal top */
-  left: 50%;
-  transform: translateX(-50%); /* Centra orizzontalmente */
-  z-index: 1050; /* Assicurati che sia sopra altri contenuti */
-  width: auto;
-  max-width: 80%; /* Imposta la larghezza massima del toast (puoi modificarlo) */
+  z-index: 1050;
 }
 
-.toast {
-  border-radius: 10px; /* Aggiungi angoli arrotondati se desideri */
+/* Testo della Navbar */
+.navbar-text {
+  font-size: 1.1rem;
+  color: #003366; /* Colore blu scuro per i testi */
 }
