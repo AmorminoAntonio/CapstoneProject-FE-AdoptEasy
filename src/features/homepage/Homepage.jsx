@@ -1,7 +1,8 @@
-import { Container, Row, Col, Card, Button, Carousel, Image } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 import CarouselHomeImg from "../CarouselHomeImg";
 import TestimonialCards from "../testimonial/TestimonialCards";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
   return (
@@ -21,17 +22,14 @@ const Homepage = () => {
           <Col className="border-2 border rounded-4 p-4">
             <h2>La Nostra Storia</h2>
             <p>
-              Il nostro progetto nasce dalla passione e dall'amore per gli animali in cerca di una nuova casa. Siamo un gruppo di persone unite dall'obiettivo
-              di dare una seconda opportunità a tutti gli animali che, a causa di circostanze impreviste, si ritrovano senza una famiglia. Crediamo che ogni
-              animale meriti una vita piena di amore, attenzione e cura.
+              Il nostro progetto nasce dalla passione e dall'amore per gli animali in cerca di una nuova casa. Crediamo che ogni animale meriti una vita piena
+              di amore, attenzione e cura.
             </p>
-            <p>
-              Con il nostro impegno, ci proponiamo di sensibilizzare la comunità sull'importanza dell'adozione responsabile e offrire una piattaforma che renda
-              il processo il più semplice e sicuro possibile.
-            </p>
-            <p>
-              Ogni animale ha una storia e ogni adozione è un passo importante. Unisciti a noi in questo percorso, perché insieme possiamo fare la differenza.
-            </p>
+            <p>Unisciti a noi e scopri come insieme possiamo fare la differenza.</p>
+            <Button variant="info" as={Link} to="/chisiamo">
+              Scopri di più
+            </Button>
+            {/* Link alla pagina Chi Siamo */}
           </Col>
         </Row>
 
@@ -71,17 +69,6 @@ const Homepage = () => {
           </Col>
         </Row>
 
-        {/* Domande frequenti */}
-        <Row className="mt-5 text-center">
-          <Col>
-            <h2>Domande Frequenti (FAQ)</h2>
-            <p>Hai domande sull'adozione? Dai un'occhiata alle domande frequenti per trovare risposte ai tuoi dubbi.</p>
-            <Button variant="info" href="/faq">
-              Leggi le FAQ
-            </Button>
-          </Col>
-        </Row>
-
         {/* Sezione Testimonianze */}
         <TestimonialCards />
 
@@ -109,31 +96,6 @@ const Homepage = () => {
                 Ogni adozione è una vittoria contro l'abbandono e la sofferenza, e ti dà la possibilità di contribuire a costruire una società più
                 compassionevole.
               </p>
-            </Col>
-          </Row>
-
-          {/* Adozioni Recenti */}
-          <Row className="mt-5">
-            <Col>
-              <h2>Adozioni Recenti</h2>
-              <p>Dai un'occhiata agli animali recentemente adottati! Siamo felici di vedere tanti animali trovare una nuova casa.</p>
-              <Carousel>
-                {/* Ogni Item nel carosello potrebbe mostrare un'adozione recente */}
-                <Carousel.Item>
-                  <Image src="recent_adoption_1.jpg" alt="Adottato" fluid />
-                  <Carousel.Caption>
-                    <h3>Cane Max</h3>
-                    <p>Max è stato adottato dopo un lungo periodo di attesa. Ora è felice con la sua nuova famiglia!</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <Image src="recent_adoption_2.jpg" alt="Adottato" fluid />
-                  <Carousel.Caption>
-                    <h3>Gatto Mia</h3>
-                    <p>Mia è stata adottata da una famiglia amorevole. Finalmente ha trovato il suo posto nel mondo!</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              </Carousel>
             </Col>
           </Row>
 

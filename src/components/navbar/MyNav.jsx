@@ -17,6 +17,7 @@ const MyNav = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastVariant, setToastVariant] = useState("success");
+  const [expanded, setExpanded] = useState(false); // Nuovo stato per il toggle del menu
 
   const navigate = useNavigate();
 
@@ -79,6 +80,10 @@ const MyNav = () => {
     }
   }, [navigate]);
 
+  const handleNavLinkClick = () => {
+    setExpanded(false); // Chiude la tendina quando un link viene cliccato
+  };
+
   return (
     <>
       <Container fluid className="banner">
@@ -90,52 +95,52 @@ const MyNav = () => {
           </Col>
         </Row>
       </Container>
-      <Navbar sticky="top" expand="lg" className="navbar-custom bg-white shadow-lg">
+      <Navbar sticky="top" expand="lg" className="navbar-custom bg-white shadow-lg" expanded={expanded}>
         <Container>
-          <Navbar.Brand as={Link} to="/">
+          <Navbar.Brand as={Link} to="/" onClick={handleNavLinkClick}>
             <Image src="/src/assets/ADOPT EASY (1).svg" width={80} />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)} />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto d-flex align-items-center">
-              <Nav.Link className="nav-link-custom" as={Link} to="/homepage">
+              <Nav.Link className="nav-link-custom" as={Link} to="/homepage" onClick={handleNavLinkClick}>
                 HOME
               </Nav.Link>
-              <Nav.Link className="nav-link-custom" as={Link} to="/album-4zampe">
+              <Nav.Link className="nav-link-custom" as={Link} to="/album-4zampe" onClick={handleNavLinkClick}>
                 ALBUM ADOZIONI
               </Nav.Link>
-              <Nav.Link className="nav-link-custom" as={Link} to="/ChiSiamo">
+              <Nav.Link className="nav-link-custom" as={Link} to="/ChiSiamo" onClick={handleNavLinkClick}>
                 CHI SIAMO
               </Nav.Link>
               <NavDropdown className="dropdown-item-custom" title="LE NOSTRE SEDI" id="navbarScrollingDropdown">
-                <NavDropdown.Item className="dropdown-item-custom" href="#action3">
+                <NavDropdown.Item className="dropdown-item-custom" href="#action3" onClick={handleNavLinkClick}>
                   RIFUGIO "LA ROSA"
                 </NavDropdown.Item>
-                <NavDropdown.Item className="dropdown-item-custom" href="#action4">
+                <NavDropdown.Item className="dropdown-item-custom" href="#action4" onClick={handleNavLinkClick}>
                   LA CASCINA SANARIA
                 </NavDropdown.Item>
-                <NavDropdown.Item className="dropdown-item-custom" href="#action3">
+                <NavDropdown.Item className="dropdown-item-custom" href="#action3" onClick={handleNavLinkClick}>
                   RIFUGIO "IL CEDRO"
                 </NavDropdown.Item>
-                <NavDropdown.Item className="dropdown-item-custom" href="#action4">
+                <NavDropdown.Item className="dropdown-item-custom" href="#action4" onClick={handleNavLinkClick}>
                   IL GATTILE SANITARIO
                 </NavDropdown.Item>
-                <NavDropdown.Item className="dropdown-item-custom" href="#action3">
+                <NavDropdown.Item className="dropdown-item-custom" href="#action3" onClick={handleNavLinkClick}>
                   IL CANILE SANITARIO
                 </NavDropdown.Item>
-                <NavDropdown.Item className="dropdown-item-custom" href="#action4">
+                <NavDropdown.Item className="dropdown-item-custom" href="#action4" onClick={handleNavLinkClick}>
                   CASCINA "LISONDRIA"
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link className="nav-link-custom" as={Link} to="/posts">
+              <Nav.Link className="nav-link-custom" as={Link} to="/posts" onClick={handleNavLinkClick}>
                 EVENTI
               </Nav.Link>
-              <Nav.Link className="nav-link-custom" as={Link} to="/contattaci">
+              <Nav.Link className="nav-link-custom" as={Link} to="/contattaci" onClick={handleNavLinkClick}>
                 CONTATTACI
               </Nav.Link>
 
               {role && (role === "ADMIN" || role === "VOLUNTEER") && (
-                <Nav.Link className="nav-link-custom" as={Link} to="/backoffice">
+                <Nav.Link className="nav-link-custom" as={Link} to="/backoffice" onClick={handleNavLinkClick}>
                   BackOffice
                 </Nav.Link>
               )}

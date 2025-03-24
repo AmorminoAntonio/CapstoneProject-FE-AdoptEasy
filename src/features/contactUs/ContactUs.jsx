@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Offcanvas, Row, Col, Container, ListGroup, Card } from "react-bootstrap";
+import { Button, Form, Offcanvas, Row, Col, Container, ListGroup, Card, Accordion } from "react-bootstrap";
 import { Clock, Envelope, Facebook, Instagram, Map, Phone, Whatsapp } from "react-bootstrap-icons";
 
 const ContactUs = () => {
@@ -10,6 +10,7 @@ const ContactUs = () => {
   });
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [activeKey, setActiveKey] = useState("0"); // To control the Accordion's expanded state
 
   // Gestione dell'input dei campi del form
   const handleChange = (e) => {
@@ -93,7 +94,7 @@ const ContactUs = () => {
       <Container className="mt-5 mb-5">
         <Row className="d-flex justify-content-around">
           {/* Sezione Form di Contatto */}
-          <Col md={5}>
+          <Col md={6} lg={4}>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="name">
                 <Form.Label>Nome</Form.Label>
@@ -109,7 +110,7 @@ const ContactUs = () => {
                 <Form.Label>Messaggio</Form.Label>
                 <Form.Control
                   as="textarea"
-                  rows={9}
+                  rows={6}
                   placeholder="Scrivi qui il tuo messaggio"
                   name="message"
                   value={formData.message}
@@ -125,56 +126,114 @@ const ContactUs = () => {
           </Col>
 
           {/* Sezione Contatti */}
-          <Col md={4}>
-            <Card className="shadow-lg border-0 mt-0 mb-0">
-              <Card.Header className="text-center bg-primary text-white">
-                <h5 className="m-0 p-0">Contatti</h5>
-              </Card.Header>
-              <Card.Body>
-                <h5>Per qualsiasi informazione, siamo qui per aiutarti!</h5>
-                <p>Se hai domande sull'adozione, sui nostri animali o su come funziona il nostro processo, non esitare a contattarci.</p>
-                <ListGroup variant="flush">
-                  <ListGroup.Item>
-                    <Phone className="me-2" />
-                    <strong>Telefono:</strong> 123-456-7890
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <Envelope className="me-2" />
-                    <strong>Email:</strong> info@adopteasy.com
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <Map className="me-2" />
-                    <strong>Indirizzo:</strong> Via degli Animali 123, Città
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <Whatsapp className="me-2" />
-                    <strong>WhatsApp:</strong> 123-456-7890
-                  </ListGroup.Item>
-                  {/* Orari di apertura */}
-                  <ListGroup.Item>
-                    <Clock className="me-2" />
-                    <strong>Orari di apertura:</strong> Lun-Ven: 9:00 - 18:00
-                  </ListGroup.Item>
-                </ListGroup>
-                {/* Pulsanti Social Media */}
-                <div className="d-flex justify-content-evenly mt-3">
-                  <Button variant="link" href="https://facebook.com/adopteasy" target="_blank" className="text-decoration-none">
-                    <Facebook size={30} color="#3b5998" />
-                  </Button>
-                  <Button variant="link" href="https://instagram.com/adopteasy" target="_blank" className="text-decoration-none">
-                    <Instagram size={30} color="#E4405F" />
-                  </Button>
-                </div>
+          <Col md={6} lg={5}>
+            {/* Accordion visibile solo su schermi piccoli */}
+            <div className="d-block d-sm-none">
+              <Accordion activeKey={activeKey} onSelect={(selectedKey) => setActiveKey(selectedKey)}>
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>Contatti</Accordion.Header>
+                  <Accordion.Body>
+                    <Card className="shadow-lg border-0 mt-3 mt-md-0 mt-sm-2 mb-0">
+                      <Card.Body>
+                        <h5>Per qualsiasi informazione, siamo qui per aiutarti!</h5>
+                        <p>Se hai domande sull'adozione, sui nostri animali o su come funziona il nostro processo, non esitare a contattarci.</p>
+                        <ListGroup variant="flush">
+                          <ListGroup.Item>
+                            <Phone className="me-2" />
+                            <strong>Telefono:</strong> 123-456-7890
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <Envelope className="me-2" />
+                            <strong>Email:</strong> info@adopteasy.com
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <Map className="me-2" />
+                            <strong>Indirizzo:</strong> Via degli Animali 123, Città
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <Whatsapp className="me-2" />
+                            <strong>WhatsApp:</strong> 123-456-7890
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <Clock className="me-2" />
+                            <strong>Orari di apertura:</strong> Lun-Ven: 9:00 - 18:00
+                          </ListGroup.Item>
+                        </ListGroup>
+                        {/* Pulsanti Social Media */}
+                        <div className="d-flex justify-content-evenly mt-3">
+                          <Button variant="link" href="https://facebook.com/adopteasy" target="_blank" className="text-decoration-none">
+                            <Facebook size={30} color="#3b5998" />
+                          </Button>
+                          <Button variant="link" href="https://instagram.com/adopteasy" target="_blank" className="text-decoration-none">
+                            <Instagram size={30} color="#E4405F" />
+                          </Button>
+                        </div>
 
-                {/* Pulsante WhatsApp */}
-                <div className="mt-4 text-center">
-                  <Button variant="success" href="https://wa.me/1234567890?text=Ciao, sono interessato all'adozione!" target="_blank" className="w-100">
-                    <Whatsapp className="me-2" />
-                    Contattaci su WhatsApp
-                  </Button>
-                </div>
-              </Card.Body>
-            </Card>
+                        {/* Pulsante WhatsApp */}
+                        <div className="mt-4 text-center">
+                          <Button variant="success" href="https://wa.me/1234567890?text=Ciao, sono interessato all'adozione!" target="_blank" className="w-100">
+                            <Whatsapp className="me-2" />
+                            Contattaci su WhatsApp
+                          </Button>
+                        </div>
+                      </Card.Body>
+                    </Card>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            </div>
+
+            {/* Card visibile solo su schermi grandi */}
+            <div className="d-none d-sm-block">
+              <Card className="shadow-lg border-0 mt-3 mt-md-0 mt-sm-2 mb-0">
+                <Card.Header className="text-center bg-primary text-white">
+                  <h5 className="m-0 p-0">Contatti</h5>
+                </Card.Header>
+                <Card.Body>
+                  <h5>Per qualsiasi informazione, siamo qui per aiutarti!</h5>
+                  <p>Se hai domande sull'adozione, sui nostri animali o su come funziona il nostro processo, non esitare a contattarci.</p>
+                  <ListGroup variant="flush">
+                    <ListGroup.Item>
+                      <Phone className="me-2" />
+                      <strong>Telefono:</strong> 123-456-7890
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <Envelope className="me-2" />
+                      <strong>Email:</strong> info@adopteasy.com
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <Map className="me-2" />
+                      <strong>Indirizzo:</strong> Via degli Animali 123, Città
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <Whatsapp className="me-2" />
+                      <strong>WhatsApp:</strong> 123-456-7890
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <Clock className="me-2" />
+                      <strong>Orari di apertura:</strong> Lun-Ven: 9:00 - 18:00
+                    </ListGroup.Item>
+                  </ListGroup>
+                  {/* Pulsanti Social Media */}
+                  <div className="d-flex justify-content-evenly mt-3">
+                    <Button variant="link" href="https://facebook.com/adopteasy" target="_blank" className="text-decoration-none">
+                      <Facebook size={30} color="#3b5998" />
+                    </Button>
+                    <Button variant="link" href="https://instagram.com/adopteasy" target="_blank" className="text-decoration-none">
+                      <Instagram size={30} color="#E4405F" />
+                    </Button>
+                  </div>
+
+                  {/* Pulsante WhatsApp */}
+                  <div className="mt-4 text-center">
+                    <Button variant="success" href="https://wa.me/1234567890?text=Ciao, sono interessato all'adozione!" target="_blank" className="w-100">
+                      <Whatsapp className="me-2" />
+                      Contattaci su WhatsApp
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
           </Col>
         </Row>
       </Container>

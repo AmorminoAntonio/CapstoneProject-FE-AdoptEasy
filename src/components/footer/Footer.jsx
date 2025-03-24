@@ -98,11 +98,11 @@ const Footer = () => {
 
       {/* Sezione Inferiore - Copyright e Bottone per Tornare in Cima */}
       <Container fluid className="bg-primary py-2">
-        <Row className="align-items-center">
-          <Col xs={12} className="text-center text-light mb-2 mb-md-0">
+        <Row className="d-flex align-items-center">
+          <Col xs={12} md={6} className="text-md-center text-lg-center  text-sm-center text-light mb-2 mb-md-0">
             <strong>Copyright © </strong>2025 Animal Care Onlus - Sviluppato con passione da <strong>Studio Creativo XYZ</strong>
           </Col>
-          <Col xs={12} md={4} className="text-end">
+          <Col xs={12} md={6} className="text-md-end text-lg-end  text-sm-center">
             <Button variant="outline-light" onClick={scrollToTop} className="py-2">
               <ArrowUp className="fs-5" />
             </Button>

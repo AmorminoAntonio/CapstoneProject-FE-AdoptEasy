@@ -1,81 +1,24 @@
-/* Contenitore per le card */
-.testimonial-card-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Card individuali */
+/* CSS per la card e l'animazione */
 .testimonial-card {
-  background-color: #fce6a5;
-  border-radius: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.testimonial-card:hover {
+  transform: scale(1.1);
+}
+
+.testimonial-card .card-body {
   padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
-  height: 100%;
-  opacity: 0;
-  animation: slideIn 24s infinite;
 }
 
-/* Animazione per far ruotare le card */
-@keyframes slideIn {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  10% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  30% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  40% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
+.testimonial-card .card-text {
+  font-style: italic;
+  color: #555;
 }
 
-/* Animazione per ogni card */
-.testimonial-card:nth-child(1) {
-  animation-delay: 0s;
-}
-.testimonial-card:nth-child(2) {
-  animation-delay: 2s;
-}
-.testimonial-card:nth-child(3) {
-  animation-delay: 4s;
-}
-.testimonial-card:nth-child(4) {
-  animation-delay: 6s;
-}
-.testimonial-card:nth-child(5) {
-  animation-delay: 8s;
-}
-.testimonial-card:nth-child(6) {
-  animation-delay: 10s;
-}
-.testimonial-card:nth-child(7) {
-  animation-delay: 12s;
-}
-.testimonial-card:nth-child(8) {
-  animation-delay: 14s;
-}
-.testimonial-card:nth-child(9) {
-  animation-delay: 16s;
-}
-
-/* Styling del testo */
-.testimonial-card footer {
+.testimonial-card .card-text:last-child {
   font-weight: bold;
-  color: #ff7f00;
-  text-align: right;
-  margin-top: 10px;
+  color: #333;
 }
