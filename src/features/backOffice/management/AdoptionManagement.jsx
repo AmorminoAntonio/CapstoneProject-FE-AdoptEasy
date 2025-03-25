@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Modal, Form, Spinner, Row, Col, Image, FormLabel } from "react-bootstrap";
-import { PencilSquare } from "react-bootstrap-icons";
+import { DatabaseAdd, PencilSquare } from "react-bootstrap-icons";
+import "./ManagementsCss.css";
 
 const AdoptionManagement = ({ handleToastShow }) => {
   const [showAdoptionModal, setShowAdoptionModal] = useState(false);
@@ -10,7 +11,10 @@ const AdoptionManagement = ({ handleToastShow }) => {
   const [adoptionNotes, setAdoptionNotes] = useState("");
   const [status, setStatus] = useState("PENDING");
   const [documentsVerified, setDocumentsVerified] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTermAnimale, setSearchTermAnimale] = useState("");
+  const [searchTermUtente, setSearchTermUtente] = useState("");
+  const [searchTermNotes, setSearchTermNotes] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
   const [adoptions, setAdoptions] = useState([]);
   const [animals, setAnimals] = useState([]);
   const [users, setUsers] = useState([]);
@@ -61,9 +65,6 @@ const AdoptionManagement = ({ handleToastShow }) => {
         setAdoptions(adoptionsData.content);
         setAnimals(animalsData.content);
         setUsers(usersData.content);
-        console.log(adoptionsData.content);
-        console.log(animalsData.content);
-        console.log(usersData.content);
       } catch (error) {
         console.error("Errore nel recuperare i dati:", error);
         handleToastShow("Errore nel recuperare i dati!", "danger");
@@ -97,17 +98,16 @@ const AdoptionManagement = ({ handleToastShow }) => {
   const handleAdoptionCreateSubmit = async (e) => {
     e.preventDefault();
 
+    // Verifica che i campi obbligatori siano compilati
     if (!animalId || !userId || !adoptionNotes) {
       handleToastShow("Completa tutti i campi obbligatori!", "danger");
       return;
     }
 
     const adoptionData = {
-      adoptionNotes,
-      animalId,
-      userId,
-      status: "PENDING",
-      documentsVerified: false,
+      adoptionNotes, // Le note sull'adozione
+      animaleId: { id_animal: animalId }, // ID dell'animale (oggetto con id)
+      utenteId: { id_user: userId }, // ID dell'utente (oggetto con id)
     };
 
     const token = localStorage.getItem("authToken");
@@ -124,7 +124,7 @@ const AdoptionManagement = ({ handleToastShow }) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(adoptionData),
+        body: JSON.stringify(adoptionData), // Invia i dati formattati
       });
 
       if (!response.ok) {
@@ -132,13 +132,12 @@ const AdoptionManagement = ({ handleToastShow }) => {
       }
 
       const newAdoption = await response.json();
-      setAdoptions([...adoptions, newAdoption]);
+      setAdoptions((prevAdoptions) => [...prevAdoptions, newAdoption]);
 
       handleToastShow("Adozione aggiunta con successo!", "success");
-
       setShowAdoptionModal(false);
     } catch (error) {
-      handleToastShow("Errore nell'aggiungere l'adozione!", error, "danger");
+      handleToastShow("Errore nell'aggiungere l'adozione!", error.message, "danger");
     }
   };
 
@@ -190,41 +189,49 @@ const AdoptionManagement = ({ handleToastShow }) => {
 
   const filteredAdoptions = adoptions.filter((adoption) => {
     return (
-      adoption.animal?.species.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      adoption.user?.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      adoption.adoptionNotes.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      adoption.status.toLowerCase().includes(searchTerm.toLowerCase())
+      adoption.animaleId.species.toLowerCase().includes(searchTermAnimale.toLowerCase()),
+      adoption.utenteId.username.toLowerCase().includes(searchTermUtente.toLowerCase()),
+      adoption.adoptionNotes.toLowerCase().includes(searchTermNotes.toLowerCase()),
+      statusFilter ? adoption.status.toLowerCase() === statusFilter.toLowerCase() : true
     );
   });
 
   return (
     <>
-      <Button onClick={() => handleShowAdoptionModal()} variant="primary" className="mb-3">
-        Aggiungi Adozione
+      <Button onClick={() => handleShowAdoptionModal()} variant="outline-success" className="mb-3">
+        <span className="d-flex align-items-center">
+          <strong> Aggiungi Adozione</strong> <DatabaseAdd className="fs-3 ms-2" />
+        </span>
       </Button>
 
       <Row>
         <Col md={3}>
           <Form.Group controlId="searchAdoptionAnimal" className="mb-3">
-            <Form.Control type="text" placeholder="Cerca per nome ANIMALE..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+            <Form.Control
+              type="text"
+              placeholder="Cerca per nome ANIMALE..."
+              value={searchTermAnimale}
+              onChange={(e) => setSearchTermAnimale(e.target.value)}
+            />
           </Form.Group>
         </Col>
         <Col md={3}>
           <Form.Group controlId="searchAdoptionUser" className="mb-3">
-            <Form.Control type="text" placeholder="Cerca per ADOTTANTE..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+            <Form.Control type="text" placeholder="Cerca per ADOTTANTE..." value={searchTermUtente} onChange={(e) => setSearchTermUtente(e.target.value)} />
           </Form.Group>
         </Col>
         <Col md={3}>
           <Form.Group controlId="searchAdoptionNotes" className="mb-3">
-            <Form.Control type="text" placeholder="Cerca per NOTE ADOZIONE..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+            <Form.Control type="text" placeholder="Cerca per NOTE ADOZIONE..." value={searchTermNotes} onChange={(e) => setSearchTermNotes(e.target.value)} />
           </Form.Group>
         </Col>
         <Col md={3}>
-          <Form.Control as="select" value={status} onChange={(e) => setStatus(e.target.value)}>
+          <Form.Control as="select" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
             <option value="APPROVED">Approvata</option>
             <option value="REJECTED">Rifiutata</option>
             <option value="PENDING">In Attesa</option>
             <option value="COMPLETED">Completata</option>
+            <option value="">Tutte</option>
           </Form.Control>
         </Col>
       </Row>
@@ -284,22 +291,34 @@ const AdoptionManagement = ({ handleToastShow }) => {
           <Form onSubmit={handleAdoptionCreateSubmit}>
             <Form.Group controlId="formAnimalId">
               <Form.Label>Animale</Form.Label>
-              <Form.Control as="select" value={animalId} onChange={(e) => setAnimalId(e.target.value)} required>
+              <Form.Control
+                as="select"
+                value={animalId}
+                onChange={(e) => setAnimalId(e.target.value)} // memorizza l'ID selezionato
+                required
+              >
                 <option value="">Seleziona un animale</option>
-                {animals.map((animal) => (
-                  <option key={animal.id} value={animal.id} className="fw-bold">
-                    ID:{animal.id} - {animal.species} - {animal.breed}
-                  </option>
-                ))}
+                {animals
+                  .filter((animal) => animal.status !== "ADOPTED")
+                  .map((animal) => (
+                    <option key={animal.id} value={animal.id}>
+                      {animal.species} - {animal.breed}
+                    </option>
+                  ))}
               </Form.Control>
             </Form.Group>
 
             <Form.Group controlId="formUserId">
               <Form.Label>Utente</Form.Label>
-              <Form.Control as="select" value={userId} onChange={(e) => setUserId(e.target.value)} required>
+              <Form.Control
+                as="select"
+                value={userId}
+                onChange={(e) => setUserId(e.target.value)} // memorizza l'ID selezionato
+                required
+              >
                 <option value="">Seleziona un utente</option>
                 {users.map((user) => (
-                  <option key={user.id} value={user.id} className="fw-bold">
+                  <option key={user.id} value={user.id}>
                     {user.firstName} {user.lastName}
                   </option>
                 ))}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Form, Modal, Spinner, Row, Col, Image } from "react-bootstrap";
 import { DatabaseAdd, PencilSquare, Trash3 } from "react-bootstrap-icons";
+import "./ManagementsCss.css";
 
 const AnimalManagement = ({ handleToastShow }) => {
   const [animals, setAnimals] = useState([]);

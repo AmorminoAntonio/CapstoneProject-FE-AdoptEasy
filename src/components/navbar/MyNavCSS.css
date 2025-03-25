@@ -1,34 +1,49 @@
+.navbar-custom {
+  background-color: rgb(255, 255, 255);
+}
+
 /* Link di navigazione */
 .nav-link-custom {
   font-weight: 600;
-  color: #003366; /* Blu scuro per un testo elegante e professionale */
+  color: #000305;
   border-radius: 10px;
   transition: all 0.3s ease;
 }
 
 /* Hover per i link */
 .nav-link-custom:hover {
-  background-color: #ffcc0063; /* Giallo brillante per l'hover */
-  color: #003366; /* Colore blu scuro per mantenere il contrasto */
-  transform: scale(1.05); /* Leggera espansione al passaggio del mouse */
+  color: #0d6cf8; /* Colore blu scuro per mantenere il contrasto */
+  transform: scale(1.1) translateY(-2px); /* Leggera espansione al passaggio del mouse */
 }
 
 /* Dropdown */
 .navbar .dropdown-menu {
   background-color: #ffffff;
+  color: #000000;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+#navbarScrollingDropdown {
+  font-weight: 600;
+  color: #000000; /* Blu scuro per un testo elegante e professionale */
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+#navbarScrollingDropdown:hover {
+  color: #0d6cf8;
+  transform: scale(1.1) translateY(-3px); /* Leggera espansione al passaggio del mouse */
 }
 
 .dropdown-item-custom {
   font-weight: 600;
-  color: #003366;
+  color: #000000; /* Blu scuro per un testo elegante e professionale */
   border-radius: 10px;
   transition: all 0.3s ease;
 }
 
 .dropdown-item-custom:hover {
-  background-color: #ffcc0063;
-  color: #003366;
+  background-color: #0d6cf8;
+  color: #ffffff;
   transform: scale(1.05);
 }
 
@@ -38,24 +53,19 @@
   padding: 10px 30px;
   border-radius: 40px;
   margin-left: 10px;
+  background-color: #fcf8f8c2;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  border: 2px solid #003366; /* Blu scuro per il bordo */
-  color: #003366; /* Blu scuro per il testo */
+  border: none;
+  color: #000000;
 }
 
 .nav-btn:hover {
-  background-color: #0080ff; /* Blu scuro per l'hover */
-  color: #ffffff; /* Colore bianco per contrastare */
+  background-color: #0080ff;
+  color: #ffffff;
   transform: scale(1.1);
 }
 
 /* Toast */
 .custom-toast-container {
   z-index: 1050;
-}
-
-/* Testo della Navbar */
-.navbar-text {
-  font-size: 1.1rem;
-  color: #003366; /* Colore blu scuro per i testi */
 }

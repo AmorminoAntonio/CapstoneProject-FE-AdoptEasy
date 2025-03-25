@@ -31,7 +31,7 @@ const TestimonialCards = () => {
     <Container className="my-5">
       <Row className="d-flex justify-content-center">
         <Col xs={12} sm={6} md={4} lg={4} className="mb-4 text-center">
-          <Card className="testimonial-card">
+          <Card className="testimonial-card shadow-lg">
             <Card.Body>
               <Card.Text>{testimonials[currentIndex].text}</Card.Text>
               <Card.Text>{testimonials[currentIndex].author}</Card.Text>

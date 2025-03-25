@@ -14,7 +14,7 @@ const Footer = () => {
       <MarqueeCarouselFooter />
 
       {/* Prima Sezione - Descrizione */}
-      <Container className="py-5 bg-dark text-light">
+      <Container className="py-3 bg-dark rounded-top-4 mt-2 text-light">
         <Row className="text-center justify-content-center">
           <Col xs={12} md={8}>
             <p className="fs-4 fw-semibold">"Adotta un amico a 4 zampe oggi stesso e fai la differenza nella vita di un animale!"</p>
@@ -24,7 +24,7 @@ const Footer = () => {
       </Container>
 
       {/* Seconda Sezione - Link Utili */}
-      <Container fluid className="bg-warning py-5">
+      <Container fluid className="py-3">
         <Row className="text-center justify-content-around align-items-center">
           <Col xs={12} sm={6} md={3} className="text-center mb-4 mb-md-0">
             <Image width={120} src="https://example.com/logo.png" className="mb-3" />
@@ -71,7 +71,7 @@ const Footer = () => {
       </Container>
 
       {/* Terza Sezione - Social Links con icone dedicate */}
-      <Container className="bg-dark py-4 text-light">
+      <Container className="bg-dark mb-2 rounded-bottom-4 py-2 text-light">
         <Row className="text-center justify-content-center">
           <Col xs={3} sm={2} md={1} className="mb-4 mb-md-0">
             <Link to="https://facebook.com" className="text-light icon-link-hover" target="_blank" rel="noopener noreferrer">

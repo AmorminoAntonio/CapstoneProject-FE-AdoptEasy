@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Accordion, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./AnimalsPageCss.css";
 
 const AnimalsPage = () => {
   const [animals, setAnimals] = useState([]);
@@ -63,7 +64,7 @@ const AnimalsPage = () => {
               <Col xs={12} sm={6} md={4} lg={3} key={index}>
                 {" "}
                 {/* Colonne responsive */}
-                <Card className="shadow-lg">
+                <Card className="card-animals shadow-lg">
                   <Card.Img height={200} className="object-fit-cover rounded-top" src={animal.photo} alt={animal.species} />
                   <Card.Body className="d-flex flex-column justify-content-between">
                     <Card.Title className="text-center">{animal.species}</Card.Title>

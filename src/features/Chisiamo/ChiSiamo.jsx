@@ -1,116 +1,123 @@
 import React from "react";
-import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
+import { Container, Row, Col, Button, Image } from "react-bootstrap";
+import "./ChiSiamo.css"; // Importiamo il file CSS personalizzato
 
 const ChiSiamo = () => {
   return (
-    <Container className="my-5">
+    <Container className="my-4">
       <h2 className="text-center mb-4 text-primary">Chi Siamo</h2>
 
-      {/* Missione Section */}
-      <section>
-        <h3 className="text-info">La nostra missione</h3>
-        <Row className="align-items-center">
-          <Col md={6}>
-            <img alt="Missione" className="img-fluid rounded shadow mb-4" />
-          </Col>
-          <Col md={6}>
-            <p>
-              Siamo un’associazione di amanti degli animali che si dedica con passione e impegno a cambiare la vita degli animali randagi. Ogni giorno, ci
-              impegniamo a raccogliere e prenderci cura di cani e gatti che vivono nelle strade, donando loro una seconda possibilità. Il nostro obiettivo è
-              dare a ogni animale il diritto di vivere una vita piena di amore, sicurezza e tranquillità, lontano dalla sofferenza e dall'abbandono.
-            </p>
-          </Col>
-        </Row>
-      </section>
+      {/* Missione */}
+      <Row className="d-flex justify-content-around align-items-center mb-5 p-5 missione">
+        <Col md={5}>
+          <Image
+            fluid
+            alt="Missione"
+            width={500}
+            className="rounded shadow mb-4"
+            src="https://images.unsplash.com/photo-1553434133-96822a8e94af?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZGFnaXxlbnwwfDB8MHx8fDA%3D"
+          />
+        </Col>
+        <Col md={5}>
+          <h3 className="">La nostra missione</h3>
+          <p className="fs-5">
+            Siamo un’associazione di amanti degli animali che si dedica con passione e impegno a cambiare la vita degli animali randagi. Ogni giorno, ci
+            impegniamo a raccogliere e prenderci cura di cani e gatti che vivono nelle strade, donando loro una seconda possibilità. Il nostro obiettivo è dare
+            a ogni animale il diritto di vivere una vita piena di amore, sicurezza e tranquillità, lontano dalla sofferenza e dall'abbandono.
+          </p>
+        </Col>
+      </Row>
 
-      {/* Impegno Section */}
-      <section>
-        <h3 className="text-info">Il nostro impegno</h3>
-        <Row className="align-items-center">
-          <Col md={6}>
-            <p>
-              Non si tratta solo di trovare una casa temporanea per questi animali. Il nostro scopo è far sì che ogni adozione sia una scelta consapevole, che
-              porti alla formazione di legami forti e duraturi tra gli animali e le loro nuove famiglie. Ogni animale che accoglie il nostro rifugio è trattato
-              con cura, amore e attenzione.
-            </p>
-          </Col>
-          <Col md={6}>
-            <img
-              src="data:image/png;base64,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"
-              alt="Supporto"
-              className="img-fluid rounded shadow mb-4"
-            />
-          </Col>
-        </Row>
-      </section>
+      {/* Ogni animale merita una seconda opportunità */}
+      <Row className="mb-5 p-5 seconda-opportunita">
+        <Col>
+          <h3 className="">Ogni animale merita una seconda opportunità</h3>
+          <p>
+            Siamo convinti che ogni animale, grande o piccolo, meriti una seconda possibilità. Ogni cane, ogni gatto che riesce a trovare una nuova famiglia,
+            riesce a scrivere una nuova storia di felicità e amore. Ogni adozione è una vittoria, non solo per l'animale, ma anche per le persone che decidono
+            di aprire il cuore e la propria casa.
+          </p>
+        </Col>
+      </Row>
 
-      {/* Rete di Supporto Section */}
-      <section>
-        <h3 className="text-info">La nostra rete di supporto</h3>
-        <Row className="align-items-center">
-          <Col md={6}>
-            <Image
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd2bvWUQCud4_fEyoF5N_OsTbTBNVhyxaPLQ&s"
-              width={400}
-              alt="Rete di supporto"
-              className="rounded-3 shadow mb-4"
-              fluid
-            />
-          </Col>
-          <Col md={6}>
-            <p>
-              Siamo una rete di volontari, rifugi, veterinari e altre organizzazioni che collaborano per garantire un futuro migliore agli animali. Lavoriamo
-              insieme per raccogliere, curare e preparare gli animali per le adozioni, supportando ogni passo del processo con professionalità e amore.
-            </p>
-          </Col>
-        </Row>
-      </section>
+      {/* Impegno */}
+      <Row className="align-items-center p-5 mb-5 impegno">
+        <Col md={6}>
+          <h3 className="">Il nostro impegno</h3>
+          <p>
+            Non si tratta solo di trovare una casa temporanea per questi animali. Il nostro scopo è far sì che ogni adozione sia una scelta consapevole, che
+            porti alla formazione di legami forti e duraturi tra gli animali e le loro nuove famiglie. Ogni animale che accoglie il nostro rifugio è trattato
+            con cura, amore e attenzione.
+          </p>
+        </Col>
+        <Col md={6}>
+          <Image
+            fluid
+            width={600}
+            className="rounded shadow"
+            src="https://plus.unsplash.com/premium_photo-1663063203452-70eb1617ea11?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YW1pY2klMjBhbmltYWxpfGVufDB8MHwwfHx8MA%3D%3D"
+          />
+        </Col>
+      </Row>
 
-      {/* Adozione consapevole Section */}
-      <section>
-        <h3 className="text-info">Adozione consapevole: un passo importante</h3>
-        <p>
-          Crediamo fermamente che ogni adozione debba essere il risultato di una scelta consapevole. Non vogliamo solo dare un tetto a un animale, ma garantire
-          che ogni famiglia sia preparata a prendersi cura di lui nel lungo periodo. Per questo, offriamo supporto continuo alle famiglie adottive, offrendo
-          consigli su come affrontare l’integrazione dell’animale nella nuova casa e aiutando a risolvere eventuali difficoltà che potrebbero sorgere durante il
-          processo di adattamento.
-        </p>
-      </section>
+      {/* Adozione consapevole */}
+      <Row className="mb-5 p-5 adozione-consapevole">
+        <Col>
+          <h3 className="">Adozione consapevole: un passo importante</h3>
+          <p>
+            Crediamo fermamente che ogni adozione debba essere il risultato di una scelta consapevole. Non vogliamo solo dare un tetto a un animale, ma
+            garantire che ogni famiglia sia preparata a prendersi cura di lui nel lungo periodo. Per questo, offriamo supporto continuo alle famiglie adottive,
+            offrendo consigli su come affrontare l’integrazione dell’animale nella nuova casa e aiutando a risolvere eventuali difficoltà che potrebbero sorgere
+            durante il processo di adattamento.
+          </p>
+        </Col>
+      </Row>
 
-      {/* La comunità che costruiamo Section */}
-      <section>
-        <h3 className="text-info">La comunità che costruiamo</h3>
-        <p>
-          La nostra visione va oltre la semplice adozione: vogliamo costruire una comunità di persone consapevoli e responsabili, che sappiano come prendersi
-          cura degli animali e come contribuire al loro benessere. Organizziamo eventi, attività educative e campagne di sensibilizzazione per coinvolgere
-          quante più persone possibile nella nostra causa.
-        </p>
-      </section>
+      {/* Rete di Supporto */}
+      <Row className="d-flex justify-content-around align-items-center mb-5 p-5 rete-supporto">
+        <Col md={5}>
+          <Image
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd2bvWUQCud4_fEyoF5N_OsTbTBNVhyxaPLQ&s"
+            width={600}
+            alt="Rete di supporto"
+            className="img-fluid rounded shadow mb-4"
+          />
+        </Col>
+        <Col md={5}>
+          <h3 className="fs-2 mb-4">La nostra rete di supporto</h3>
+          <p className="fs-5">
+            Siamo una rete di volontari, rifugi, veterinari e altre organizzazioni che collaborano per garantire un futuro migliore agli animali. Lavoriamo
+            insieme per raccogliere, curare e preparare gli animali per le adozioni, supportando ogni passo del processo con professionalità e amore.
+          </p>
+        </Col>
+      </Row>
 
-      {/* Ogni animale merita una seconda opportunità Section */}
-      <section>
-        <h3 className="text-info">Ogni animale merita una seconda opportunità</h3>
-        <p>
-          Siamo convinti che ogni animale, grande o piccolo, meriti una seconda possibilità. Ogni cane, ogni gatto che riesce a trovare una nuova famiglia,
-          riesce a scrivere una nuova storia di felicità e amore. Ogni adozione è una vittoria, non solo per l'animale, ma anche per le persone che decidono di
-          aprire il cuore e la propria casa.
-        </p>
-      </section>
+      {/* La comunità che costruiamo */}
+      <Row className="mb-5 p-5 comunita">
+        <Col>
+          <h3 className="">La comunità che costruiamo</h3>
+          <p>
+            La nostra visione va oltre la semplice adozione: vogliamo costruire una comunità di persone consapevoli e responsabili, che sappiano come prendersi
+            cura degli animali e come contribuire al loro benessere. Organizziamo eventi, attività educative e campagne di sensibilizzazione per coinvolgere
+            quante più persone possibile nella nostra causa.
+          </p>
+        </Col>
+      </Row>
 
-      {/* Unisciti a noi Section */}
-      <section>
-        <h3 className="text-info">Unisciti a noi</h3>
-        <p>
-          La nostra missione non finisce mai. Ogni giorno, cerchiamo di fare la differenza, aiutando gli animali randagi e educando la comunità. Se anche tu
-          credi che ogni vita meriti una chance, unisciti a noi! Sostieni la nostra causa, adotta un animale, diffondi la voce, e contribuisci a rendere il
-          mondo un posto migliore per tutti.
-        </p>
-        <div className="text-center">
-          <Button variant="success" size="lg">
+      {/* Unisciti a noi */}
+      <Row className="text-center p-5 unisciti">
+        <Col>
+          <h3 className="">Unisciti a noi</h3>
+          <p>
+            La nostra missione non finisce mai. Ogni giorno, cerchiamo di fare la differenza, aiutando gli animali randagi e educando la comunità. Se anche tu
+            credi che ogni vita meriti una chance, unisciti a noi! Sostieni la nostra causa, adotta un animale, diffondi la voce, e contribuisci a rendere il
+            mondo un posto migliore per tutti.
+          </p>
+          <Button variant="success" size="lg" className="mt-3">
             Unisciti a noi!
           </Button>
-        </div>
-      </section>
+        </Col>
+      </Row>
     </Container>
   );
 };

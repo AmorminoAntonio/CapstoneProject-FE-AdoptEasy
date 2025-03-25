@@ -126,7 +126,7 @@ const ContactUs = () => {
           </Col>
 
           {/* Sezione Contatti */}
-          <Col md={6} lg={5}>
+          <Col sm={4} md={6} lg={5}>
             {/* Accordion visibile solo su schermi piccoli */}
             <div className="d-block d-sm-none">
               <Accordion activeKey={activeKey} onSelect={(selectedKey) => setActiveKey(selectedKey)}>

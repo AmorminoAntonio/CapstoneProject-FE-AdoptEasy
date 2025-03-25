@@ -6,7 +6,7 @@ import MyNav from "./components/navbar/MyNav";
 import Homepage from "./features/homepage/Homepage";
 import Footer from "./components/footer/Footer";
 import ChiSiamo from "./features/Chisiamo/ChiSiamo";
-import AnimalsPage from "./features/AnimalsPage";
+import AnimalsPage from "./features/albumAdozioni/AnimalsPage";
 import ContactUs from "./features/contactUs/ContactUs";
 import BackOffice from "./features/backOffice/BackOffice";
 

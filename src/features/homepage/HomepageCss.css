@@ -1,9 +1,3 @@
-/* Generale */
-body {
-  font-family: "Open Sans", sans-serif;
-  background-color: #fafafa;
-}
-
 .headline {
   font-size: 2.5rem;
   color: #ff7f00;
@@ -29,7 +23,7 @@ body {
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
 }
 
-.btn-custom {
+.button {
   border-radius: 25px;
   padding: 10px 30px;
   background-color: #ff7f00;
@@ -38,8 +32,9 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.btn-custom:hover {
+.button:hover {
   background-color: #ff6600;
+  transform: scale(1.05);
 }
 
 /* Animali in Adozione */
@@ -109,9 +104,4 @@ body {
 .carousel-control-next-icon {
   background-color: #ff7f00;
   border-radius: 50%;
-}
-
-/* Aggiungi bordi agli item */
-.carousel-item {
-  padding: 20px;
 }

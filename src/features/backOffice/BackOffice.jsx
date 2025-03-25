@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Accordion, Spinner } from "react-bootstrap";
+import { useState } from "react";
+import { Container, Accordion } from "react-bootstrap";
 import AnimalManagement from "./management/AnimalManagement";
 import AdoptionManagement from "./management/AdoptionManagement";
 import UserManagement from "./management/UserManagement";

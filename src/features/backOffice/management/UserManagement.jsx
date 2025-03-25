@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Form, Modal, Image, Container, Row, Col } from "react-bootstrap";
 import { PencilSquare, Trash3 } from "react-bootstrap-icons";
+import "./ManagementsCss.css";
 
 const UserManagement = ({ handleToastShow }) => {
   const [users, setUsers] = useState([]);
@@ -231,11 +232,10 @@ const UserManagement = ({ handleToastShow }) => {
               <td>{user.phone}</td>
               <td>{user.role}</td>
               <td>
-                <Button variant="info" onClick={() => handleEditClick(user)}>
+                <Button onClick={() => handleEditClick(user)}>
                   <PencilSquare />
                 </Button>
                 <Button
-                  variant="danger"
                   onClick={() => {
                     setUserToDelete(user);
                     setShowDeleteModal(true);
@@ -256,12 +256,8 @@ const UserManagement = ({ handleToastShow }) => {
         </Modal.Header>
         <Modal.Body>Sei sicuro di voler eliminare questo utente?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
-            Annulla
-          </Button>
-          <Button variant="danger" onClick={handleDeleteUser}>
-            Conferma Eliminazione
-          </Button>
+          <Button onClick={() => setShowDeleteModal(false)}>Annulla</Button>
+          <Button onClick={handleDeleteUser}>Conferma Eliminazione</Button>
         </Modal.Footer>
       </Modal>
 
@@ -307,9 +303,7 @@ const UserManagement = ({ handleToastShow }) => {
                 <option value="ADMIN">Amministratore</option>
               </Form.Control>
             </Form.Group>
-            <Button variant="primary" type="submit">
-              {isEditMode ? "Modifica Utente" : "Aggiungi Utente"}
-            </Button>
+            <Button type="submit">{isEditMode ? "Modifica Utente" : "Aggiungi Utente"}</Button>
           </Form>
         </Modal.Body>
       </Modal>

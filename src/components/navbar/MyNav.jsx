@@ -81,7 +81,7 @@ const MyNav = () => {
   }, [navigate]);
 
   const handleNavLinkClick = () => {
-    setExpanded(false); // Chiude la tendina quando un link viene cliccato
+    setExpanded(false);
   };
 
   return (
@@ -95,10 +95,10 @@ const MyNav = () => {
           </Col>
         </Row>
       </Container>
-      <Navbar sticky="top" expand="lg" className="navbar-custom bg-white shadow-lg" expanded={expanded}>
+      <Navbar sticky="top" expand="lg" className="navbar-custom shadow-lg" expanded={expanded}>
         <Container>
           <Navbar.Brand as={Link} to="/" onClick={handleNavLinkClick}>
-            <Image src="/src/assets/ADOPT EASY (1).svg" width={80} />
+            <Image src="/src/assets/ADOPT EASY (1).svg" width={130} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)} />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -112,7 +112,7 @@ const MyNav = () => {
               <Nav.Link className="nav-link-custom" as={Link} to="/ChiSiamo" onClick={handleNavLinkClick}>
                 CHI SIAMO
               </Nav.Link>
-              <NavDropdown className="dropdown-item-custom" title="LE NOSTRE SEDI" id="navbarScrollingDropdown">
+              <NavDropdown className="dropdown-item-custom-padre" title="LE NOSTRE SEDI" id="navbarScrollingDropdown">
                 <NavDropdown.Item className="dropdown-item-custom" href="#action3" onClick={handleNavLinkClick}>
                   RIFUGIO "LA ROSA"
                 </NavDropdown.Item>
