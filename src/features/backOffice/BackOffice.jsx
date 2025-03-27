@@ -16,7 +16,7 @@ const BackOffice = () => {
 
   return (
     <Container>
-      <h1 className="text-center mt-2">BACKOFFICE - ANIMALI / ADOZIONI / ADMIN-VOLUNTEER</h1>
+      <h1 className="text-center my-5">BACKOFFICE - ANIMALI / ADOZIONI / ADMIN-VOLUNTEER</h1>
 
       {/* Messaggio Toast */}
       <ToastMessage toastMessage={toastMessage} setToastMessage={setToastMessage} />

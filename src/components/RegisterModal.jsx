@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal, Toast, ToastContainer } from "react-bootstrap";
 
 const RegisterModal = ({ show, handleClose }) => {
-  // Stato per i dati del form
   const initialFormState = {
-    firstName: "", // firstName corrisponde a nome
-    lastName: "", // lastName corrisponde a cognome
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     phone: "",
@@ -16,13 +15,14 @@ const RegisterModal = ({ show, handleClose }) => {
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState({});
   const [registerError, setRegisterError] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastVariant, setToastVariant] = useState("success"); // 'success' or 'danger'
 
-  // Reset dei campi quando il modale si chiude
   useEffect(() => {
     if (!show) setFormData(initialFormState);
   }, [show]);
 
-  // Funzione di validazione
   const validate = () => {
     let newErrors = {};
     if (!formData.firstName.trim()) newErrors.firstName = "Il nome è obbligatorio.";
@@ -46,14 +46,14 @@ const RegisterModal = ({ show, handleClose }) => {
     e.preventDefault();
     if (validate()) {
       try {
-        console.log("Dati inviati:", JSON.stringify(formData, null, 2)); // Log dei dati inviati
+        console.log("Dati inviati:", JSON.stringify(formData, null, 2));
 
         const response = await fetch("http://localhost:8080/utente/registration", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData), // invio dei dati come JSON
+          body: JSON.stringify(formData),
         });
 
         const data = await response.json();
@@ -61,74 +61,93 @@ const RegisterModal = ({ show, handleClose }) => {
 
         if (response.ok) {
           console.log("Registrazione effettuata con successo", data);
-          handleClose(); // Chiudi il modale se la registrazione è andata a buon fine
+          setToastMessage(`La tua registrazione è stata completata con successo!  
+          Grazie per esserti registrato, ${formData.firstName}. Sei ora parte della nostra famiglia e pronto per iniziare il viaggio nell'adozione dei tuoi futuri amici a quattro zampe! Benvenuto!`);
+          setToastVariant("success");
+          setShowToast(true);
+          handleClose();
         } else {
           setRegisterError(data.error || data.message || "Errore durante la registrazione.");
+          setToastMessage(data.error || data.message || "Errore durante la registrazione.");
+          setToastVariant("danger");
+          setShowToast(true);
         }
       } catch (error) {
         console.error("Errore durante la registrazione:", error);
         setRegisterError("Si è verificato un errore durante la registrazione.");
+        setToastMessage("Si è verificato un errore durante la registrazione.");
+        setToastVariant("danger");
+        setShowToast(true);
       }
     }
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>Registrati</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>Nome</Form.Label>
-            <Form.Control type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
-            {errors.firstName && <p className="text-danger">{errors.firstName}</p>}
-          </Form.Group>
+    <>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Registrati</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Nome</Form.Label>
+              <Form.Control type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+              {errors.firstName && <p className="text-danger">{errors.firstName}</p>}
+            </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Cognome</Form.Label>
-            <Form.Control type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
-            {errors.lastName && <p className="text-danger">{errors.lastName}</p>}
-          </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Cognome</Form.Label>
+              <Form.Control type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+              {errors.lastName && <p className="text-danger">{errors.lastName}</p>}
+            </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Username</Form.Label>
-            <Form.Control type="text" name="username" value={formData.username} onChange={handleChange} required />
-            {errors.username && <p className="text-danger">{errors.username}</p>}
-          </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="text" name="username" value={formData.username} onChange={handleChange} required />
+              {errors.username && <p className="text-danger">{errors.username}</p>}
+            </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Telefono</Form.Label>
-            <Form.Control type="text" name="phone" value={formData.phone} onChange={handleChange} required />
-            {errors.phone && <p className="text-danger">{errors.phone}</p>}
-          </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Telefono</Form.Label>
+              <Form.Control type="text" name="phone" value={formData.phone} onChange={handleChange} required />
+              {errors.phone && <p className="text-danger">{errors.phone}</p>}
+            </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Indirizzo</Form.Label>
-            <Form.Control type="text" name="address" value={formData.address} onChange={handleChange} required />
-            {errors.address && <p className="text-danger">{errors.address}</p>}
-          </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Indirizzo</Form.Label>
+              <Form.Control type="text" name="address" value={formData.address} onChange={handleChange} required />
+              {errors.address && <p className="text-danger">{errors.address}</p>}
+            </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} required />
-            {errors.email && <p className="text-danger">{errors.email}</p>}
-          </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} required />
+              {errors.email && <p className="text-danger">{errors.email}</p>}
+            </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" name="password" value={formData.password} onChange={handleChange} required />
-            {errors.password && <p className="text-danger">{errors.password}</p>}
-          </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" name="password" value={formData.password} onChange={handleChange} required />
+              {errors.password && <p className="text-danger">{errors.password}</p>}
+            </Form.Group>
 
-          {registerError && <p className="text-danger">{registerError}</p>}
+            {registerError && <p className="text-danger">{registerError}</p>}
 
-          <Button variant="primary" type="submit">
-            Registrati
-          </Button>
-        </Form>
-      </Modal.Body>
-    </Modal>
+            <Button variant="primary" type="submit">
+              Registrati
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
+
+      {/* ToastContainer for showing messages */}
+      <ToastContainer className="custom-toast-container" position="top-center">
+        <Toast show={showToast} onClose={() => setShowToast(false)} delay={3000} bg={toastVariant} autohide>
+          <Toast.Body>{toastMessage}</Toast.Body>
+        </Toast>
+      </ToastContainer>
+    </>
   );
 };
 

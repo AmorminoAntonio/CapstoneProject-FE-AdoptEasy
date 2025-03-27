@@ -26,19 +26,14 @@ const Footer = () => {
       {/* Seconda Sezione - Link Utili */}
       <Container fluid className="py-3">
         <Row className="text-center justify-content-around align-items-center">
-          <Col xs={12} sm={6} md={3} className="text-center mb-4 mb-md-0">
-            <Image width={120} src="https://example.com/logo.png" className="mb-3" />
+          <Col xs={12} sm={6} md={2} className="text-center mb-4 mb-md-0">
+            <Image width={160} src="/src/assets/PieSport_Logo_Vert_Col_Neg.png" className="mb-3" />
             <h5 className="fw-bold">Comune di Torino - Ufficio Adozione Animali</h5>
             <p>Via Roma 45, Torino</p>
             <p>Assessore: Alessandra Bianchi | Direttore: Dott. Paolo Rossi</p>
           </Col>
-          <Col xs={12} sm={6} md={3} className="mb-4 mb-md-0">
-            <h5 className="fw-bold">Contatti Ufficio Tutela Animali</h5>
-            <p>Chiara Mancini & Marco Lupo</p>
-            <p>Tel: 011/555389 | Fax: 011/555388</p>
-            <p>Orari: Lun-Ven 9.00 - 13.00</p>
-          </Col>
-          <Col xs={12} sm={6} md={3} className="mb-4 mb-md-0">
+
+          <Col xs={12} sm={6} md={2} className="mb-4 mb-md-0">
             <Nav className="flex-column">
               <Nav.Link href="#privacy" className="text-dark fw-semibold">
                 Privacy Policy
@@ -54,7 +49,7 @@ const Footer = () => {
               </Nav.Link>
             </Nav>
           </Col>
-          <Col xs={12} sm={6} md={3} className="mb-4 mb-md-0">
+          <Col xs={12} sm={6} md={2} className="mb-4 mb-md-0">
             <Nav className="flex-column">
               <Nav.Link href="#mission" className="text-dark fw-semibold">
                 La Nostra Missione
@@ -66,6 +61,12 @@ const Footer = () => {
                 Eventi e Iniziative
               </Nav.Link>
             </Nav>
+          </Col>
+          <Col xs={12} sm={6} md={2} className="text-center mb-4 mb-md-0">
+            <Image src="/src/assets/AdoptEasy.gif" fluid width={160} className="rounded-circle" />
+            <h5 className="fw-bold">Contatti Ufficio Tutela Animali</h5>
+            <p>Chiara Mancini & Marco Lupo</p>
+            <p>Tel: 011/555389 | Fax: 011/555388</p>
           </Col>
         </Row>
       </Container>

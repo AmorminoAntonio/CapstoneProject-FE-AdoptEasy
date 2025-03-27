@@ -17,7 +17,7 @@ const MyNav = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastVariant, setToastVariant] = useState("success");
-  const [expanded, setExpanded] = useState(false); // Nuovo stato per il toggle del menu
+  const [expanded, setExpanded] = useState(false); // qui faccio chiudere il toggle dopo il click link
 
   const navigate = useNavigate();
 
@@ -71,7 +71,7 @@ const MyNav = () => {
 
           if (currentTime > expirationTime) {
             handleLogout();
-            showMessage("Token scaduto. Eseguito il logout automaticamente.", "danger");
+            showMessage("Token scaduto. Eseguito il logout automaticamente.", "warning");
           }
         } catch (error) {
           console.error("Errore nella decodifica del token da localStorage:", error);

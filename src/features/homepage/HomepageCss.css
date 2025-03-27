@@ -63,12 +63,6 @@
   transform: scale(1.1);
 }
 
-/* Stile del carosello */
-.testimonial-carousel .carousel-inner {
-  position: relative;
-  padding: 40px 0; /* Aggiungiamo un po' di spazio sopra e sotto per far respirare il carosello */
-}
-
 /* Ogni item del carosello con sfondo e animazione */
 .testimonial-item {
   background-color: #fce6a5; /* Colore di default */
@@ -97,11 +91,4 @@
 .testimonial-item footer {
   font-weight: bold;
   color: #ff7f00;
-}
-
-/* Stile per il carosello */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: #ff7f00;
-  border-radius: 50%;
 }

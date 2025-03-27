@@ -62,7 +62,6 @@ const AnimalsPage = () => {
           {animals.length > 0 ? (
             animals.map((animal, index) => (
               <Col xs={12} sm={6} md={4} lg={3} key={index}>
-                {" "}
                 {/* Colonne responsive */}
                 <Card className="card-animals shadow-lg">
                   <Card.Img height={200} className="object-fit-cover rounded-top" src={animal.photo} alt={animal.species} />

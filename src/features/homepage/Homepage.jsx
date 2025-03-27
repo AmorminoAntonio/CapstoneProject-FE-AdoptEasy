@@ -87,8 +87,8 @@ const Homepage = () => {
         </Row>
 
         {/* Sezione come adottare */}
-        <Row className="mt-5 text-center">
-          <Col>
+        <Row className="mt-5 text-center justify-content-around align-items-center">
+          <Col md={5}>
             <h2>Come Adottare un Animale</h2>
             <p>Adottare un animale è semplice, ma richiede attenzione e responsabilità. Segui questi passi per iniziare:</p>
             <ul className="list-unstyled">
@@ -106,13 +106,16 @@ const Homepage = () => {
               </li>
             </ul>
           </Col>
+          <Col md={5}>
+            <Image fluid width={400} src="/src/assets/Rifugio per animali `adopt easy`.gif" />
+          </Col>
         </Row>
       </Container>
 
       {/* Sezione Animali */}
       <Container className="my-3">
-        <Row className="d-flex justify-content-between align-items-center text-center mt-5 bg-success-subtle p-5 rounded shadow">
-          <Col xs={12} md={3}>
+        <Row className="d-flex justify-content-around align-items-center mt-5 bg-success-subtle p-5 rounded shadow">
+          <Col xs={12} md={3} className="text-center">
             <h3>L'importanza di Adottare un Animale</h3>
             <p>
               L'adozione di un animale non è solo un gesto di amore, ma anche un'azione che aiuta a ridurre il numero di animali randagi e abbandonati. Molti
@@ -123,7 +126,7 @@ const Homepage = () => {
               comunità sull'importanza di trattare gli animali con rispetto e cura.
             </p>
           </Col>
-          <Col xs={12} md={6}>
+          <Col xs={12} md={5}>
             <Image
               fluid
               width={550}
@@ -131,7 +134,7 @@ const Homepage = () => {
               src="https://images.unsplash.com/photo-1581579186913-45ac3e6efe93?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZmFtaWdsaWElMjBjYW5lfGVufDB8MHwwfHx8MA%3D%3D"
             />
           </Col>
-          <Col xs={12} md={3}>
+          <Col xs={12} md={3} className="text-center">
             <h3>Un Gesto che Cambia la Vita</h3>
             <p>
               Adottare un animale significa creare un legame profondo che arricchisce la vita di entrambe le parti. Il cane o il gatto che adotti diventerà il
@@ -167,21 +170,21 @@ const Homepage = () => {
 
       {/* Sezione Volontariato e Donazioni */}
       <Container>
-        <Row className="d-flex justify-content-around text-center mt-5">
+        <Row className="d-flex justify-content-between mt-5">
           <Col sm={6} md={4} lg={4}>
             <h2>Diventa un Volontario</h2>
             <p>
               Se vuoi fare la differenza nella vita degli animali in cerca di una casa, unisciti a noi come volontario! Offri il tuo tempo e il tuo amore agli
               animali bisognosi.
             </p>
-            <Button variant="outline-success" className="button align-items-center" href="/chisiamo">
+            <Button className="button align-items-center" href="/chisiamo">
               <span className="">Scopri come diventare un volontario 🫱🏼‍🫲🏼</span>
             </Button>
           </Col>
           <Col sm={6} md={4} lg={4}>
-            <h2>Sostieni il Rifugio</h2>
+            <h2>Sostieni il nostro Rifugio</h2>
             <p>Ogni piccolo gesto può fare la differenza! Sostieni il nostro rifugio con una donazione o acquistando prodotti per i nostri animali.</p>
-            <Button variant="outline-danger" className="button lign-items-center" href="#">
+            <Button className="button lign-items-center" href="#">
               Fai una Donazione ❤️🐶
             </Button>
           </Col>
