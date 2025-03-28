@@ -5,7 +5,7 @@ import "./ChiSiamo.css"; // Importiamo il file CSS personalizzato
 const ChiSiamo = () => {
   return (
     <Container className="my-4">
-      <h2 className="text-center mb-4 text-primary">Chi Siamo</h2>
+      <h1 className="text-center mb-4 text-primary">Chi Siamo</h1>
 
       {/* Missione */}
       <Row className="d-flex justify-content-around align-items-center mb-5 p-5 missione">

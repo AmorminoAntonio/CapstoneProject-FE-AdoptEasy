@@ -47,11 +47,7 @@ const LoginModal = ({ show, handleClose, handleLogin }) => {
           if (data && data.token) {
             // Memorizza il token nel localStorage
             localStorage.setItem("authToken", data.token);
-
-            // Passa i dati dell'utente al componente padre
             handleLogin(data);
-
-            // Chiudi il modale
             handleClose();
           } else {
             setLoginError("Token non trovato nella risposta del server.");

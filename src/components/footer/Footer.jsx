@@ -24,48 +24,51 @@ const Footer = () => {
       </Container>
 
       {/* Seconda Sezione - Link Utili */}
-      <Container fluid className="py-3">
+      <Container fluid>
         <Row className="text-center justify-content-around align-items-center">
-          <Col xs={12} sm={6} md={2} className="text-center mb-4 mb-md-0">
-            <Image width={160} src="/src/assets/PieSport_Logo_Vert_Col_Neg.png" className="mb-3" />
+          <Col xs={12} sm={6} md={4} className="text-center">
+            <Image width={120} src="/src/assets/PieSport_Logo_Vert_Col_Neg.png" />
             <h5 className="fw-bold">Comune di Torino - Ufficio Adozione Animali</h5>
-            <p>Via Roma 45, Torino</p>
+            <p className="mb-0">Via Roma 45, Torino</p>
             <p>Assessore: Alessandra Bianchi | Direttore: Dott. Paolo Rossi</p>
           </Col>
 
-          <Col xs={12} sm={6} md={2} className="mb-4 mb-md-0">
+          <Col xs={12} sm={6} md={2}>
             <Nav className="flex-column">
-              <Nav.Link href="#privacy" className="text-dark fw-semibold">
+              <Nav.Link as={Link} to="#privacy" className="footer-link text-dark fw-semibold">
                 Privacy Policy
               </Nav.Link>
-              <Nav.Link href="#terms" className="text-dark fw-semibold">
+              <Nav.Link as={Link} to="#terms" className="footer-link text-dark fw-semibold">
                 Termini di Servizio
               </Nav.Link>
-              <Nav.Link href="#faq" className="text-dark fw-semibold">
+              <Nav.Link as={Link} to="#faq" className="footer-link text-dark fw-semibold">
                 Domande Frequenti
               </Nav.Link>
-              <Nav.Link href="#support" className="text-dark fw-semibold">
+              <Nav.Link as={Link} to="#support" className="footer-link text-dark fw-semibold">
                 Supporto
               </Nav.Link>
             </Nav>
           </Col>
-          <Col xs={12} sm={6} md={2} className="mb-4 mb-md-0">
+          <Col xs={12} sm={6} md={2}>
             <Nav className="flex-column">
-              <Nav.Link href="#mission" className="text-dark fw-semibold">
+              <Nav.Link as={Link} to="#mission" className="footer-link text-dark fw-semibold">
                 La Nostra Missione
               </Nav.Link>
-              <Nav.Link href="#partners" className="text-dark fw-semibold">
+              <Nav.Link as={Link} to="#partners" className="footer-link text-dark fw-semibold">
                 I Nostri Partner
               </Nav.Link>
-              <Nav.Link href="#events" className="text-dark fw-semibold">
+              <Nav.Link as={Link} to="#events" className="footer-link text-dark fw-semibold">
                 Eventi e Iniziative
+              </Nav.Link>
+              <Nav.Link as={Link} to="#centri-affiliati" className="footer-link text-dark fw-semibold">
+                Centri affiliati
               </Nav.Link>
             </Nav>
           </Col>
-          <Col xs={12} sm={6} md={2} className="text-center mb-4 mb-md-0">
-            <Image src="/src/assets/AdoptEasy.gif" fluid width={160} className="rounded-circle" />
+          <Col xs={12} sm={6} md={4} className="text-center">
+            <Image src="/src/assets/AdoptEasy.gif" fluid width={120} className="rounded-circle" />
             <h5 className="fw-bold">Contatti Ufficio Tutela Animali</h5>
-            <p>Chiara Mancini & Marco Lupo</p>
+            <p className="mb-0">Chiara Mancini & Marco Lupo</p>
             <p>Tel: 011/555389 | Fax: 011/555388</p>
           </Col>
         </Row>

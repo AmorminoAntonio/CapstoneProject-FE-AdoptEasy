@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Form, Modal, Image, Container, Row, Col } from "react-bootstrap";
-import { PencilSquare, Trash3 } from "react-bootstrap-icons";
+import { DatabaseAdd, PencilSquare, Trash3 } from "react-bootstrap-icons";
 import "./ManagementsCss.css";
 
 const UserManagement = ({ handleToastShow }) => {
@@ -204,8 +204,10 @@ const UserManagement = ({ handleToastShow }) => {
         </Row>
       </Form>
 
-      <Button className="mb-3" onClick={() => setShowUserModal(true)}>
-        Aggiungi Utente
+      <Button variant="outline-success" className="mb-3 align-items-center" onClick={() => setShowUserModal(true)}>
+        <span className="d-flex align-items-center">
+          <strong> Aggiungi Utente </strong> <DatabaseAdd className="fs-3 ms-2" />
+        </span>
       </Button>
 
       <Table striped bordered hover responsive>

@@ -12,15 +12,14 @@
 }
 
 .story-card {
-  background-color: #fff4e1;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: #ffe5856c;
   border-radius: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .story-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 19px rgba(0, 0, 0, 0.196);
 }
 
 .button {

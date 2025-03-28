@@ -82,7 +82,9 @@ const AnimalsPage = () => {
                             to={"/contattaci"}
                             className="mt-auto py-1 w-100" // Rende il bottone a larghezza piena
                           >
-                            Richiedi appuntamento
+                            {" "}
+                            Richiedi Informazioni
+                            {/* Richiedi appuntamento (prossimo upgrade-calendar) */}
                           </Button>
                         </Accordion.Body>
                       </Accordion.Item>

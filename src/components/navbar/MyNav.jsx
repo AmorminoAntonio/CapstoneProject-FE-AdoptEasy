@@ -17,7 +17,7 @@ const MyNav = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastVariant, setToastVariant] = useState("success");
-  const [expanded, setExpanded] = useState(false); // qui faccio chiudere il toggle dopo il click link
+  const [expanded, setExpanded] = useState(false);
 
   const navigate = useNavigate();
 
@@ -82,23 +82,20 @@ const MyNav = () => {
 
   const handleNavLinkClick = () => {
     setExpanded(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <>
-      <Container fluid className="banner">
-        <Row className="text-center text-bg-primary pt-2">
-          <Col>
-            <h6 className="fw-lighter">
-              <span className="fw-bold">ADOPT EASY</span> Associazione Tutela Animali - Sede legale: S.P Pavia n°36 - Valmadonna(ALESSANDRIA)
-            </h6>
-          </Col>
-        </Row>
+      <Container fluid className="banner text-center text-bg-primary">
+        <h6 className="fw-lighter py-1">
+          <span className="fw-bold">ADOPT EASY</span> Associazione Tutela Animali - Sede legale: S.P Pavia n°36 - Castelceriolo (AL)
+        </h6>
       </Container>
       <Navbar sticky="top" expand="lg" className="navbar-custom shadow-lg" expanded={expanded}>
-        <Container>
+        <Container fluid className="px-5">
           <Navbar.Brand as={Link} to="/" onClick={handleNavLinkClick}>
-            <Image src="/src/assets/ADOPT EASY (1).svg" width={130} />
+            <Image src="/src/assets/ADOPT EASY (1).svg" width={100} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)} />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -112,7 +109,7 @@ const MyNav = () => {
               <Nav.Link className="nav-link-custom" as={Link} to="/ChiSiamo" onClick={handleNavLinkClick}>
                 CHI SIAMO
               </Nav.Link>
-              <NavDropdown className="dropdown-item-custom-padre" title="LE NOSTRE SEDI" id="navbarScrollingDropdown">
+              <NavDropdown title="LE NOSTRE SEDI" id="navbarScrollingDropdown">
                 <NavDropdown.Item className="dropdown-item-custom" href="#action3" onClick={handleNavLinkClick}>
                   RIFUGIO "LA ROSA"
                 </NavDropdown.Item>
@@ -148,17 +145,17 @@ const MyNav = () => {
             <div className="d-flex align-items-center">
               {!user ? (
                 <>
-                  <Button variant="outline-dark" onClick={() => setShowRegister(true)} className="nav-btn">
+                  <Button onClick={() => setShowRegister(true)} className="nav-btn">
                     Registrati
                   </Button>
-                  <Button variant="outline-dark" onClick={() => setShowLogin(true)} className="nav-btn">
+                  <Button onClick={() => setShowLogin(true)} className="nav-btn">
                     Login
                   </Button>
                 </>
               ) : (
                 <>
                   <span className="navbar-text">Benvenuto, {user.sub}!</span>
-                  <Button variant="outline-dark" className="ms-4 nav-btn" onClick={handleLogout}>
+                  <Button className="ms-4 nav-btn" onClick={handleLogout}>
                     Logout
                   </Button>
                 </>

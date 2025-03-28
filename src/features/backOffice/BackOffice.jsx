@@ -38,13 +38,13 @@ const BackOffice = () => {
           </Accordion.Body>
         </Accordion.Item>
 
-        {/* Sezione Adozioni */}
-        <Accordion.Item eventKey="1">
+        {/* /*  {/* Sezione Adozioni */}
+        {/* <Accordion.Item eventKey="1">
           <Accordion.Header>Gestisci Adozioni</Accordion.Header>
           <Accordion.Body>
             <AdoptionManagement handleToastShow={handleToastShow} />
           </Accordion.Body>
-        </Accordion.Item>
+        </Accordion.Item> */}
       </Accordion>
     </Container>
   );
