@@ -17,10 +17,8 @@ const BackOffice = () => {
   return (
     <Container>
       <h1 className="text-center my-5">BACKOFFICE - ANIMALI / ADOZIONI / ADMIN-VOLUNTEER</h1>
-
       {/* Messaggio Toast */}
       <ToastMessage toastMessage={toastMessage} setToastMessage={setToastMessage} />
-
       {/* Sezione Animali */}
       <Accordion>
         <Accordion.Item eventKey="0">
@@ -31,7 +29,7 @@ const BackOffice = () => {
         </Accordion.Item>
 
         {/* Sezione Utenti */}
-        <Accordion.Item eventKey="2">
+        <Accordion.Item eventKey="1">
           <Accordion.Header>Gestisci Utenti</Accordion.Header>
           <Accordion.Body>
             <UserManagement handleToastShow={handleToastShow} />
@@ -39,12 +37,12 @@ const BackOffice = () => {
         </Accordion.Item>
 
         {/* /*  {/* Sezione Adozioni */}
-        {/* <Accordion.Item eventKey="1">
+        <Accordion.Item eventKey="2">
           <Accordion.Header>Gestisci Adozioni</Accordion.Header>
           <Accordion.Body>
             <AdoptionManagement handleToastShow={handleToastShow} />
           </Accordion.Body>
-        </Accordion.Item> */}
+        </Accordion.Item>
       </Accordion>
     </Container>
   );

@@ -76,6 +76,11 @@ const AdoptionManagement = ({ handleToastShow }) => {
     fetchData();
   }, [handleToastShow]);
 
+  const handleCloseAdoptionModal = () => {
+    setShowAdoptionModal(false);
+    setAdoptionToEdit(null);
+  };
+
   const handleShowAdoptionModal = (adoption = null) => {
     if (adoption) {
       setAdoptionToEdit(adoption);
@@ -98,16 +103,15 @@ const AdoptionManagement = ({ handleToastShow }) => {
   const handleAdoptionCreateSubmit = async (e) => {
     e.preventDefault();
 
-    // Verifica che i campi obbligatori siano compilati
     if (!animalId || !userId || !adoptionNotes) {
       handleToastShow("Completa tutti i campi obbligatori!", "danger");
       return;
     }
 
     const adoptionData = {
-      adoptionNotes, // Le note sull'adozione
-      animaleId: { id_animal: animalId }, // ID dell'animale (oggetto con id)
-      utenteId: { id_user: userId }, // ID dell'utente (oggetto con id)
+      adoptionNotes,
+      animaleId: { id_animal: animalId },
+      utenteId: { id_user: userId },
     };
 
     const token = localStorage.getItem("authToken");
@@ -124,7 +128,7 @@ const AdoptionManagement = ({ handleToastShow }) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(adoptionData), // Invia i dati formattati
+        body: JSON.stringify(adoptionData),
       });
 
       if (!response.ok) {
@@ -135,7 +139,7 @@ const AdoptionManagement = ({ handleToastShow }) => {
       setAdoptions((prevAdoptions) => [...prevAdoptions, newAdoption]);
 
       handleToastShow("Adozione aggiunta con successo!", "success");
-      setShowAdoptionModal(false);
+      handleCloseAdoptionModal();
     } catch (error) {
       handleToastShow("Errore nell'aggiungere l'adozione!", error.message, "danger");
     }
@@ -180,8 +184,7 @@ const AdoptionManagement = ({ handleToastShow }) => {
       setAdoptions(adoptions.map((adoption) => (adoption.id === adoptionToEdit.id ? updatedAdoption : adoption)));
 
       handleToastShow("Adozione aggiornata con successo!", "success");
-
-      setShowAdoptionModal(false);
+      handleCloseAdoptionModal();
     } catch (error) {
       handleToastShow("Errore nell'aggiornare l'adozione!", error, "danger");
     }
@@ -189,10 +192,10 @@ const AdoptionManagement = ({ handleToastShow }) => {
 
   const filteredAdoptions = adoptions.filter((adoption) => {
     return (
-      adoption.animaleId.species.toLowerCase().includes(searchTermAnimale.toLowerCase()),
-      adoption.utenteId.username.toLowerCase().includes(searchTermUtente.toLowerCase()),
-      adoption.adoptionNotes.toLowerCase().includes(searchTermNotes.toLowerCase()),
-      statusFilter ? adoption.status.toLowerCase() === statusFilter.toLowerCase() : true
+      adoption.animaleId.species.toLowerCase().includes(searchTermAnimale.toLowerCase()) &&
+      adoption.utenteId.username.toLowerCase().includes(searchTermUtente.toLowerCase()) &&
+      adoption.adoptionNotes.toLowerCase().includes(searchTermNotes.toLowerCase()) &&
+      (statusFilter ? adoption.status.toLowerCase() === statusFilter.toLowerCase() : true)
     );
   });
 
@@ -257,10 +260,12 @@ const AdoptionManagement = ({ handleToastShow }) => {
               filteredAdoptions.map((adoption) => (
                 <tr key={adoption.id}>
                   <td>
-                    <Image width={70} src={adoption.animaleId.photo} /> - {adoption.animaleId.species}
+                    <Image width={50} src={adoption.animaleId.photo} />
+                    <strong> {adoption.animaleId.species}</strong>
                   </td>
                   <td>
-                    <Image width={50} src={adoption.utenteId.avatarUtente} /> - {adoption.utenteId.username}
+                    <Image width={50} src={adoption.utenteId.avatarUtente} />
+                    <strong>{adoption.utenteId.username}</strong>
                   </td>
                   <td>{adoption.status}</td>
                   <td>{adoption.adoptionNotes}</td>
@@ -283,7 +288,7 @@ const AdoptionManagement = ({ handleToastShow }) => {
       )}
 
       {/* Modal per creazione */}
-      <Modal show={showAdoptionModal && !adoptionToEdit} onHide={() => setShowAdoptionModal(false)}>
+      <Modal show={showAdoptionModal && !adoptionToEdit} onHide={handleCloseAdoptionModal}>
         <Modal.Header closeButton>
           <Modal.Title>Aggiungi Adozione</Modal.Title>
         </Modal.Header>
@@ -291,12 +296,7 @@ const AdoptionManagement = ({ handleToastShow }) => {
           <Form onSubmit={handleAdoptionCreateSubmit}>
             <Form.Group controlId="formAnimalId">
               <Form.Label>Animale</Form.Label>
-              <Form.Control
-                as="select"
-                value={animalId}
-                onChange={(e) => setAnimalId(e.target.value)} // memorizza l'ID selezionato
-                required
-              >
+              <Form.Control as="select" value={animalId} onChange={(e) => setAnimalId(e.target.value)} required>
                 <option value="">Seleziona un animale</option>
                 {animals
                   .filter((animal) => animal.status !== "ADOPTED")
@@ -310,12 +310,7 @@ const AdoptionManagement = ({ handleToastShow }) => {
 
             <Form.Group controlId="formUserId">
               <Form.Label>Utente</Form.Label>
-              <Form.Control
-                as="select"
-                value={userId}
-                onChange={(e) => setUserId(e.target.value)} // memorizza l'ID selezionato
-                required
-              >
+              <Form.Control as="select" value={userId} onChange={(e) => setUserId(e.target.value)} required>
                 <option value="">Seleziona un utente</option>
                 {users.map((user) => (
                   <option key={user.id} value={user.id}>
@@ -330,7 +325,7 @@ const AdoptionManagement = ({ handleToastShow }) => {
               <Form.Control as="textarea" value={adoptionNotes} onChange={(e) => setAdoptionNotes(e.target.value)} rows={3} required />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" onClick={() => setShowAdoptionModal(false)}>
               Aggiungi Adozione
             </Button>
           </Form>
@@ -338,7 +333,7 @@ const AdoptionManagement = ({ handleToastShow }) => {
       </Modal>
 
       {/* Modal per modifica */}
-      <Modal show={showAdoptionModal && adoptionToEdit} onHide={() => setShowAdoptionModal(false)}>
+      <Modal show={showAdoptionModal && adoptionToEdit} onHide={handleCloseAdoptionModal}>
         <Modal.Header closeButton>
           <Modal.Title>Modifica Adozione</Modal.Title>
         </Modal.Header>
@@ -363,7 +358,7 @@ const AdoptionManagement = ({ handleToastShow }) => {
               <Form.Check type="checkbox" label="Documenti Verificati" checked={documentsVerified} onChange={(e) => setDocumentsVerified(e.target.checked)} />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" onClick={() => setShowAdoptionModal(false)}>
               Salva Modifiche
             </Button>
           </Form>

@@ -110,28 +110,28 @@ const MyNav = () => {
                 CHI SIAMO
               </Nav.Link>
               <NavDropdown title="LE NOSTRE SEDI" id="navbarScrollingDropdown">
-                <NavDropdown.Item className="dropdown-item-custom" href="#action3" onClick={handleNavLinkClick}>
+                <NavDropdown.Item className="dropdown-item-custom" to="#action3" onClick={handleNavLinkClick}>
                   RIFUGIO "LA ROSA"
                 </NavDropdown.Item>
-                <NavDropdown.Item className="dropdown-item-custom" href="#action4" onClick={handleNavLinkClick}>
+                <NavDropdown.Item className="dropdown-item-custom" to="#action4" onClick={handleNavLinkClick}>
                   LA CASCINA SANARIA
                 </NavDropdown.Item>
-                <NavDropdown.Item className="dropdown-item-custom" href="#action3" onClick={handleNavLinkClick}>
+                <NavDropdown.Item className="dropdown-item-custom" to="#action3" onClick={handleNavLinkClick}>
                   RIFUGIO "IL CEDRO"
                 </NavDropdown.Item>
-                <NavDropdown.Item className="dropdown-item-custom" href="#action4" onClick={handleNavLinkClick}>
+                <NavDropdown.Item className="dropdown-item-custom" to="#action4" onClick={handleNavLinkClick}>
                   IL GATTILE SANITARIO
                 </NavDropdown.Item>
-                <NavDropdown.Item className="dropdown-item-custom" href="#action3" onClick={handleNavLinkClick}>
+                <NavDropdown.Item className="dropdown-item-custom" to="#action3" onClick={handleNavLinkClick}>
                   IL CANILE SANITARIO
                 </NavDropdown.Item>
-                <NavDropdown.Item className="dropdown-item-custom" href="#action4" onClick={handleNavLinkClick}>
+                <NavDropdown.Item className="dropdown-item-custom" to="#action4" onClick={handleNavLinkClick}>
                   CASCINA "LISONDRIA"
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link className="nav-link-custom" as={Link} to="/posts" onClick={handleNavLinkClick}>
+              {/*  <Nav.Link className="nav-link-custom" as={Link} to="/posts" onClick={handleNavLinkClick}>
                 EVENTI
-              </Nav.Link>
+              </Nav.Link> */}
               <Nav.Link className="nav-link-custom" as={Link} to="/contattaci" onClick={handleNavLinkClick}>
                 CONTATTACI
               </Nav.Link>

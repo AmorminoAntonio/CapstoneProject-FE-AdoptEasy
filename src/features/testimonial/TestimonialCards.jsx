@@ -1,42 +1,102 @@
-import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
-import "./TestimonialCardsCss.css";
+import { Container, Row, Col, Card, Carousel } from "react-bootstrap";
 
 const TestimonialCards = () => {
-  // Array delle testimonianze
-  const testimonials = [
-    { text: "Adottare Fido è stata una delle decisioni migliori della mia vita. È diventato il mio compagno fedele.", author: "- Laura, 28 anni" },
-    { text: "Abbiamo adottato Micia da un rifugio e non potremmo essere più felici. È così affettuosa!", author: "- Marco, 35 anni" },
-    { text: "L'adozione di un cane ha cambiato la mia vita. È il mio amico più sincero.", author: "- Anna, 42 anni" },
-    { text: "Il mio cane è la cosa migliore che mi sia mai successa. L'adozione mi ha cambiato la vita.", author: "- Giulia, 29 anni" },
-    { text: "Mia sorella ha adottato una gatta ed è fantastica! È diventata parte della nostra famiglia.", author: "- Luca, 33 anni" },
-    { text: "Adottare un cane è stato un atto di amore che ci ha uniti ancora di più come famiglia.", author: "- Stefania, 37 anni" },
-    { text: "La nostra esperienza con l'adozione è stata straordinaria, il nostro cane è un membro amato della famiglia.", author: "- Paolo, 44 anni" },
-    { text: "Adottare un animale è stata la decisione migliore per il mio cuore e la mia casa.", author: "- Alessandra, 38 anni" },
-    { text: "Con il nostro cane siamo diventati una vera famiglia. Non possiamo immaginare la vita senza di lui.", author: "- Giorgio, 41 anni" },
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Funzione per cambiare la testimonianza ciclicamente
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <Container className="my-5">
+    <Container className="my-2 pb-5">
       <Row className="d-flex justify-content-center">
-        <Col xs={12} sm={6} md={4} lg={4} className="mb-4 text-center">
-          <Card className="testimonial-card shadow-lg">
-            <Card.Body>
-              <Card.Text>{testimonials[currentIndex].text}</Card.Text>
-              <Card.Text>{testimonials[currentIndex].author}</Card.Text>
-            </Card.Body>
-          </Card>
+        <Col xs={12} sm={10} md={8} lg={6} xl={5}>
+          <h2 className="text-center mb-4">Le nostre Testimonianze</h2>
+          <Carousel interval={5000} className="testimonial-carousel shadow">
+            {/* Primo Item */}
+            <Carousel.Item>
+              <Card className="testimonial-card p-4 bg-primary-subtle">
+                <Card.Body>
+                  <Card.Text>Adottare Fido è stata una delle decisioni migliori della mia vita. È diventato il mio compagno fedele.</Card.Text>
+                  <Card.Text className="text-end">- Laura, 28 anni</Card.Text>
+                </Card.Body>
+              </Card>
+            </Carousel.Item>
+
+            {/* Secondo Item */}
+            <Carousel.Item>
+              <Card className="testimonial-card p-4 bg-primary-subtle">
+                <Card.Body>
+                  <Card.Text>Abbiamo adottato Micia da un rifugio e non potremmo essere più felici. È così affettuosa!</Card.Text>
+                  <Card.Text className="text-end">- Marco, 35 anni</Card.Text>
+                </Card.Body>
+              </Card>
+            </Carousel.Item>
+
+            {/* Terzo Item */}
+            <Carousel.Item>
+              <Card className="testimonial-card p-4 bg-primary-subtle">
+                <Card.Body>
+                  <Card.Text>L'adozione di un cane ha cambiato la mia vita. È il mio amico più sincero.</Card.Text>
+                  <Card.Text className="text-end">- Anna, 42 anni</Card.Text>
+                </Card.Body>
+              </Card>
+            </Carousel.Item>
+
+            {/* Quarto Item */}
+            <Carousel.Item>
+              <Card className="testimonial-card p-4 bg-primary-subtle">
+                <Card.Body>
+                  <Card.Text>Il mio cane è la cosa migliore che mi sia mai successa. L'adozione mi ha cambiato la vita.</Card.Text>
+                  <Card.Text className="text-end">- Giulia, 29 anni</Card.Text>
+                </Card.Body>
+              </Card>
+            </Carousel.Item>
+
+            {/* Quinto Item */}
+            <Carousel.Item>
+              <Card className="testimonial-card p-4 bg-primary-subtle">
+                <Card.Body>
+                  <Card.Text>Mia sorella ha adottato una gatta ed è fantastica! È diventata parte della nostra famiglia.</Card.Text>
+                  <Card.Text className="text-end">- Luca, 33 anni</Card.Text>
+                </Card.Body>
+              </Card>
+            </Carousel.Item>
+
+            {/* Sesto Item */}
+            <Carousel.Item>
+              <Card className="testimonial-card p-4 bg-primary-subtle">
+                <Card.Body>
+                  <Card.Text>Adottare un cane è stato un atto di amore che ci ha uniti ancora di più come famiglia.</Card.Text>
+                  <Card.Text className="text-end">- Stefania, 37 anni</Card.Text>
+                </Card.Body>
+              </Card>
+            </Carousel.Item>
+
+            {/* Settimo Item */}
+            <Carousel.Item>
+              <Card className="testimonial-card p-4 bg-primary-subtle">
+                <Card.Body>
+                  <Card.Text>La nostra esperienza con l'adozione è stata straordinaria, il nostro cane è un membro amato della famiglia.</Card.Text>
+                  <Card.Text className="text-end">- Paolo, 44 anni</Card.Text>
+                </Card.Body>
+              </Card>
+            </Carousel.Item>
+
+            {/* Ottavo Item */}
+            <Carousel.Item>
+              <Card className="testimonial-card p-4 bg-primary-subtle">
+                <Card.Body>
+                  <Card.Text>Adottare un animale è stata la decisione migliore per il mio cuore e la mia casa.</Card.Text>
+                  <Card.Text className="text-end">- Alessandra, 38 anni</Card.Text>
+                </Card.Body>
+              </Card>
+            </Carousel.Item>
+
+            {/* Nono Item */}
+            <Carousel.Item>
+              <Card className="testimonial-card p-4 bg-primary-subtle">
+                <Card.Body>
+                  <Card.Text>Con il nostro cane siamo diventati una vera famiglia. Non possiamo immaginare la vita senza di lui.</Card.Text>
+                  <Card.Text className="text-end">- Giorgio, 41 anni</Card.Text>
+                </Card.Body>
+              </Card>
+            </Carousel.Item>
+          </Carousel>
         </Col>
       </Row>
     </Container>

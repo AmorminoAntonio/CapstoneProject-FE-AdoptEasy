@@ -54,6 +54,10 @@ const AnimalsPage = () => {
     return <div>Error: {error}</div>;
   }
 
+  const handleClickButton = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
       <h1 className="text-center mb-1 mt-5">🐾 I nostri amici pelosi.</h1>
@@ -76,13 +80,7 @@ const AnimalsPage = () => {
                           <strong>Data del ritrovamento:</strong> {animal.foundDate} <br />
                           <strong>Data disponibile per l'adozione:</strong> {animal.availableSince} <br />
                           <strong>Descrizione:</strong> {animal.description} <br />
-                          <strong>Osservazioni post ritrovamento:</strong> {animal.observation}
-                          <Button
-                            as={Link}
-                            to={"/contattaci"}
-                            className="mt-auto py-1 w-100" // Rende il bottone a larghezza piena
-                          >
-                            {" "}
+                          <Button as={Link} to={"/contattaci"} className="mt-auto py-1 w-100" onClick={handleClickButton}>
                             Richiedi Informazioni
                             {/* Richiedi appuntamento (prossimo upgrade-calendar) */}
                           </Button>
