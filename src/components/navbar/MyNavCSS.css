@@ -1,0 +1,87 @@
+.navbar-custom {
+  background-color: rgb(255, 255, 255);
+}
+
+/* Link di navigazione */
+.nav-link-custom {
+  color: #000000;
+  font-weight: bold;
+  border-radius: 10px;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+/* Hover per i link */
+.nav-link-custom:hover {
+  color: #0d6cf8;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #0d6cf8;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link:hover::before {
+  left: 0%;
+  width: 100%;
+}
+
+/* Dropdown */
+.navbar .dropdown-menu {
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+#navbarScrollingDropdown {
+  color: #000000;
+  border-radius: 10px;
+  font-weight: bold;
+}
+#navbarScrollingDropdown:hover {
+  color: #0d6cf8;
+}
+
+.dropdown-item-custom {
+  color: #000000;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item-custom:hover {
+  background-color: #0d6cf8;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Pulsanti */
+.nav-btn {
+  font-weight: 600;
+  padding: 10px 30px;
+  border-radius: 40px;
+  margin-left: 10px;
+  background-color: #ffffffc2;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
+  color: #000000;
+}
+
+.nav-btn:hover {
+  background-color: #0080ff;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Toast */
+.custom-toast-container {
+  z-index: 1050;
+}

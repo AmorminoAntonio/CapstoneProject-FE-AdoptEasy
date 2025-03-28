@@ -1,0 +1,123 @@
+h1 {
+  font-size: 2.6rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+h3 {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Sezione Missione */
+.missione {
+  background-color: #ebf0f4;
+  padding: 30px 0;
+  border-radius: 10px;
+}
+
+.missione h3 {
+  color: #004085;
+}
+
+.missione p {
+  color: #333;
+}
+
+/* Sezione Impegno */
+.impegno {
+  background-color: #e9f7fa;
+  padding: 30px 0;
+  border-radius: 10px;
+}
+
+.impegno h3 {
+  color: #00796b;
+}
+
+.impegno p {
+  color: #333;
+}
+
+/* Sezione Rete di Supporto */
+.rete-supporto {
+  background-color: #fff3e0;
+  padding: 30px 0;
+  border-radius: 10px;
+}
+
+.rete-supporto h3 {
+  color: #003c8bd3;
+}
+
+.rete-supporto p {
+  color: #333;
+}
+
+/* Sezione Adozione Consapevole */
+.adozione-consapevole {
+  background-color: #00796b6e;
+  padding: 30px 0;
+  border-radius: 10px;
+}
+
+.adozione-consapevole h3 {
+  color: #e9f7fa;
+}
+
+.adozione-consapevole p {
+  color: #333;
+}
+
+/* Sezione Comunità */
+.comunita {
+  background-color: #c8e6c9;
+  padding: 30px 0;
+  border-radius: 10px;
+}
+
+.comunita h3 {
+  color: #388e3c;
+}
+
+.comunita p {
+  color: #333;
+}
+
+/* Sezione Seconda Opportunità */
+.seconda-opportunita {
+  background-color: #e1bee7;
+  padding: 30px 0;
+  border-radius: 10px;
+}
+
+.seconda-opportunita h3 {
+  color: #6a1b9a;
+}
+
+.seconda-opportunita p {
+  color: #333;
+}
+
+/* Sezione Unisciti a noi */
+.unisciti {
+  background-color: #dcedc8;
+  padding: 30px 0;
+  border-radius: 10px;
+}
+
+.unisciti h3 {
+  color: #388e3c;
+}
+
+.unisciti p {
+  color: #333;
+}
+
+.unisciti .btn {
+  font-size: 1.2rem;
+  padding: 12px 30px;
+}

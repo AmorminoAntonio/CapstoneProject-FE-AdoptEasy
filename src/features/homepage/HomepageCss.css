@@ -1,0 +1,74 @@
+.headline {
+  font-size: 2.5rem;
+  color: #ff7f00;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 15px;
+}
+
+.story-card {
+  background-color: #ffe5856c;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 19px rgba(0, 0, 0, 0.196);
+}
+
+.button {
+  border-radius: 25px;
+  padding: 10px 30px;
+  background-color: #ff7f00;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ff6600;
+  transform: scale(1.05);
+}
+
+.adoption-card {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.adoption-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.animal-img {
+  transition: transform 0.3s ease;
+}
+
+.animal-img:hover {
+  transform: scale(1.1);
+}
+
+.recent-adoptions {
+  text-align: center;
+  margin: 20px;
+}
+
+.recent-adoptions h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.recent-adoptions p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  color: #555;
+}

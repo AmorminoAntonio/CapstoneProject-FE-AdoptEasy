@@ -1,0 +1,22 @@
+.footer-link {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+.footer-link::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #0d6cf8;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.footer-link:hover::before {
+  left: 0%;
+  width: 100%;
+}

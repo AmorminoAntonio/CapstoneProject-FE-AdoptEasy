@@ -1,10 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MyNav from "./components/MyNav";
-import Homepage from "./components/Homepage";
-import Postspage from "./components/Postspage";
-import Footer from "./components/Footer";
+import MyNav from "./components/navbar/MyNav";
+import Homepage from "./features/homepage/Homepage";
+import Footer from "./components/footer/Footer";
+import ChiSiamo from "./features/Chisiamo/ChiSiamo";
+import AnimalsPage from "./features/albumAdozioni/AnimalsPage";
+import ContactUs from "./features/contactUs/ContactUs";
+import BackOffice from "./features/backOffice/BackOffice";
 
 function App() {
   return (
@@ -12,7 +16,11 @@ function App() {
       <MyNav />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/posts" element={<Postspage />} />
+        <Route path="/ChiSiamo" element={<ChiSiamo />} />
+        <Route path="/homepage" element={<Homepage />} />
+        <Route path="/backoffice" element={<BackOffice />} />
+        <Route path="/contattaci" element={<ContactUs />} />
+        <Route path="/album-4zampe" element={<AnimalsPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

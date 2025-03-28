@@ -1,0 +1,112 @@
+:root {
+  --primary-color: #ebc30c; /* Orange */
+  --secondary-color: #1a73e8; /* Blue */
+  --accent-color: #34a853; /* Green */
+  --neutral-color: #fbbc05; /* Yellow */
+  --light-background: #f4f6f8; /* Very light gray */
+  --dark-text: #333333;
+}
+
+/* Buttons */
+button {
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.table th {
+  background: var(--secondary-color);
+  color: white;
+  padding: 12px;
+  text-align: start;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  padding: 12px;
+  text-align: start;
+  color: #666;
+  font-size: 0.95rem;
+  background-color: var(--light-background);
+}
+
+.table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.table td button {
+  background-color: transparent;
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+}
+
+.table td button:hover {
+  background-color: var(--secondary-color);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Styles */
+.modal-header {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3rem;
+  border-top-color: var(--primary-color);
+  margin: 20px auto;
+}
+
+.search-section .form-control:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 10px rgba(26, 115, 232, 0.4);
+  outline: none;
+}
+
+/* Modal Confirmation */
+.modal-footer button {
+  font-weight: bold;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.modal-footer button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-footer .btn-danger {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.modal-footer .btn-danger:hover {
+  background-color: darken(var(--primary-color), 10%);
+}
